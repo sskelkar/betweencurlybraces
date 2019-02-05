@@ -1,4 +1,4 @@
-baseURL = "http://example.org/"
+baseURL = "https://sskelkar.github.io/"
 languageCode = "en-us"
 title = "betweencurlybraces"
 theme = "minimal-bootstrap-hugo-theme"
