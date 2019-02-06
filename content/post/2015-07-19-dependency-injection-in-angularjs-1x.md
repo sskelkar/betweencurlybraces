@@ -31,6 +31,7 @@ module.service('MyService', function() {
     //MyService constructor code
 });
 {{</highlight>}}
+
 When the controller is loaded, Angular runtime automatically provides objects of `MyService` and `$http` services. This is how it works:
 
 Angular run time internally maintains two cache objects: provider cache and instance cache, to hold a _provider_ for an injectable component and the actual instance of that component.
@@ -52,6 +53,7 @@ providerCache = {
     ... //other providers
 };
 {{</highlight>}}
+
 When `MyService` is used somewhere in the application, the internal DI mechanism looks for `MyService` object in instance cache. If it is not present there, then it looks for `MyServiceProvider` in the provider cache. If the provider is found, an object is created using the constructor function and stored in the instance cache. The same object is passed to `MyController` and wherever else in the application `MyService` is used. This is because in Angular, **all services are singleton**. Lazy initialization of services allows the application to load up quickly and remain relatively lightweight.
 
 Angular DI mechanism relies on two important services: `$provide` and `$injector`. Normally you don’t interact with them directly.

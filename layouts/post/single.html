@@ -5,10 +5,12 @@
   <small class="text-secondary">
   {{ $customDateFormat := "January 2, 2006" }}
   {{ with .Site.Params.customDateFormat }}{{ $customDateFormat = . }}{{ end }}
-  {{ .PublishDate.Format $customDateFormat }}{{ if gt .Lastmod .PublishDate }}, updated {{ .Lastmod.Format $customDateFormat }}{{ end }}
-    &nbsp;&#9679;&nbsp;
+  Posted on {{ .PublishDate.Format $customDateFormat }}{{ if gt .Lastmod .PublishDate }}, updated {{ .Lastmod.Format $customDateFormat }}{{ end }}
+    by
+    <b>{{ .Params.author }}</b>
+    &nbsp;|&nbsp;
   {{ .Params.readingTime }} min read
-    &nbsp;&#x25CF;&nbsp;
+    &nbsp;&nbsp;
   </small>
   {{ partial "tags" . }}
 </p>

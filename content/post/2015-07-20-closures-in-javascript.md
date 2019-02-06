@@ -28,6 +28,7 @@ var addBy10 = adderFactory(10);
 console.log(addBy5(2));          // prints "7"
 console.log(addBy10(2));         // prints "12"
 {{</highlight>}}
+
 In the above code, we have an outer function `adderFactory` with a local variable `x`. From this function, we return an unnamed function which refers to the variable `x`.
 
 We then call the `adderFactory` with value 5. `adderFactory` exits after returning the unnamed function, which we store in the variable `addBy5`. Now this variable `addBy5` is bound to a function that adds 5 to the number passed to it and returns the sum.

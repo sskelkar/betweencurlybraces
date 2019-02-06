@@ -55,6 +55,7 @@ public class ArrayListProfiler {
   }
 }
 {{</highlight>}}
+
 I will compile and run it as following:
 ```cmd
 javac ArrayListProfiler.java && java -Xmx1m -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:D:\gc.log ArrayListProfiler
@@ -95,6 +96,7 @@ public class ArrayListProfiler {
   }
 }
 {{</highlight>}}
+
 The output in this case comes out to be like this:
 ```sh
 Java HotSpot(TM) 64-Bit Server VM (25.40-b25) for windows-amd64 JRE (1.8.0_40-b26), built on Mar  7 2015 13:51:59 by "java_re" with MS VC++ 10.0 (VS2010)

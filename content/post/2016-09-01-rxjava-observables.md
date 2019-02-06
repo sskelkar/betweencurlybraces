@@ -1,5 +1,5 @@
 ---
-title: "Parallelizing time intensive operations with RxJava Observables"
+title: "Running time intensive operations in parallel with RxJava Observables"
 date: 2016-09-01T00:00:00+05:30
 draft: false
 author: "Sojjwal Kelkar"
@@ -43,6 +43,7 @@ public class Producer2 {
   }
 }
 {{</highlight>}}
+
 Note that the `produce()` method of each producer is going to take approx 5 seconds to execute. The time required to consume them sequentially would be the aggregate of the execution time of each producer.
 {{< highlight java  >}}
 public class SequentialConsumer {
@@ -60,6 +61,7 @@ public class SequentialConsumer {
   }
 }
 {{</highlight>}}
+
 Now let's rewrite the above code using Observables. First, we need to identify the tasks that can be parallelized, and wrap them inside RxJava Observable objects. In our case, we will convert the `produce()` method invocations to Observable tasks by wrapping them in `Observable.just()` methods. Additionally, we would also like to defer the execution of our Observable tasks so that we can control when they get invoked. So we wrap our tasks inside `Observable.defer()`.
 
 The way Observer model works is, we have an Observable which emits some information. And we have a subscriber or observer, that listens to the Observable and consumes the information emitted by it. So we need our Observable tasks to be subscribed on, so that the results emitted by them can be processed. We also need to execute them in parallel, which can be done by executing them in separate threads. This can be done by calling `subscribeOn(Schedulers.newThread())`.
@@ -76,6 +78,7 @@ Observable.zip(o1, o2, o3, (o1Result, o2Result, o3Result) -> {
   // some code
 });
 {{</highlight>}}
+
 In our example, the two Observables will each emit a list of Integers, which we can collect in another ArrayList and return from the `consume()` method.
 We need to pause our main thread until all the parallel tasks are completed, so that we can collect their results. This can be done using the `toBlocking()` operator.
 Finally, we  call the `single()` method to trigger the execution of our Observables and return the combined list of integers.
