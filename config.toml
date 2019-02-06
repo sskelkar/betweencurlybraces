@@ -35,7 +35,7 @@ pygmentsStyle = "tango"
 
 [menu]
   [[menu.nav]]
-  name = "{betweencurlybraces}"
+  name = "Blog"
   url = "/"
   weight = 1
   [[menu.nav]]
