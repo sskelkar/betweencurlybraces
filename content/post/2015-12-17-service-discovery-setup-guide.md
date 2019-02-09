@@ -8,7 +8,14 @@ tags:
 - Spring
 readingTime: 12
 ---
-A step by step guide to set up a service discovery, to which we will register a demo server and *discover* it from a demo client service.
+In a microservices environment we can run multiple instances of a service for resilience and scalability. 
+In a cloud environment these instances can go up and down arbitrarily.
+So we need some kind of service discovery mechanism to keep track of running instances. When a service A needs to call a service B,
+it asks for the address of any running instance of service B from the service discovery. The service discovery can also load balance the
+incoming requests. In this post I demonstrate how to setup a service discovery environment with [Netflix Eureka](https://github.com/Netflix/eureka).
+When ever a service instance spins up, it registers itself with Eureka and sends regular heartbeats to confirm its availability. 
+
+This is a step by step guide to set up a service discovery, to which we will register a demo server and *discover* it from a demo client service.
 
 ### Steps to configure a Eureka server
 a. Create a new Gradle project for the Eureka server. In https://start.spring.io/, select the starters for `Eureka Server`.
