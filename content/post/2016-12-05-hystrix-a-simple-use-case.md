@@ -4,7 +4,7 @@ date: 2016-12-05T00:00:00+05:30
 draft: false
 author: "Sojjwal Kelkar"
 tags:
-- Java
+- Microservices
 readingTime: 3
 ---
 Hystrix is a fault tolerance library that is very useful for managing failures in a distributed environment like microservices. Suppose we have a service `A` dependent  on service `B`, which is in turn dependent on service `C`.

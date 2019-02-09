@@ -5,7 +5,7 @@ draft: false
 author: "Sojjwal Kelkar"
 tags:
 - Java
-- Spring
+- Microservices
 readingTime: 12
 ---
 In a microservices environment we can run multiple instances of a service for resilience and scalability. 

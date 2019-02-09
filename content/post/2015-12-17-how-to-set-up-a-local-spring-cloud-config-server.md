@@ -5,7 +5,7 @@ draft: false
 author: "Sojjwal Kelkar"
 tags:
 - Java
-- Spring
+- Microservices
 readingTime: 10
 ---
 ### Steps to configure config server
