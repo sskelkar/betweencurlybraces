@@ -10,8 +10,8 @@ readingTime: 12
 ---
 A step by step guide to set up a service discovery, to which we will register a demo server and *discover* it from a demo client service.
 
-### Steps to configure a Eureka service
-a. Create a new Gradle project for the Eureka service. In https://start.spring.io/, select the starters for `Eureka Server`.
+### Steps to configure a Eureka server
+a. Create a new Gradle project for the Eureka server. In https://start.spring.io/, select the starters for `Eureka Server`.
 
 b. In your project, navigate to `src/main/resources`. Rename the automatically generated `application.properties` file to `bootstrap.yml`.
 c. Configure the `bootstrap.yml` as following:
@@ -29,11 +29,11 @@ eureka:
       defaultZone: http://localhost:${server.port}/eureka/
 {{< /highlight >}}
 
-Here we declared the application name, and port number for our eureka service as `8002`. Rest of the configuration tells this application to not to register itself with the available Eureka instance, which in this case is itself!
+Here we declared the application name, and port number for our eureka server as `8002`. Rest of the configuration tells this application to not to register itself with the available Eureka instance, which in this case is itself!
 
 d. Annotate the application’s main class with `@EnableEurekaServer`.
 
-e. Run the application. Your Eureka service is ready.
+e. Run the application. Your Eureka server is ready.
 
 ### Steps to configure a demo server that will register itself to Eureka
 a. Create a new Gradle project for the demo server. In https://start.spring.io/, select the starters for web and Eureka Discovery.
@@ -67,7 +67,7 @@ public class DemoServerController {
 }
 {{< /highlight >}}
 
-f. Run the application. In the command prompt you will see the service registering itself to the Eureka service.
+f. Run the application. In the command prompt you will see the service registering itself to the Eureka server.
 
 ### Steps to configure a demo client
 a. Create a new Gradle project for the demo client service. In https://start.spring.io/, select the starters for web, Feign and Eureka Discovery.
@@ -98,7 +98,7 @@ public interface DemoServerClient {
 }
 {{< /highlight >}}
 
-We have annotated the interface with `@FeignClient` that takes the name of the target service as it is registered at the Eureka service. The signature of greet method is identical to the way it is declared in `demo-server`’s public API.
+We have annotated the interface with `@FeignClient` that takes the name of the target service as it is registered at the Eureka server. The signature of greet method is identical to the way it is declared in `demo-server`’s public API.
 
 e. Now to verify that everything is working fine, lets create a rest endpoint in our client service, which will delegate its call to `demo-server`’s `greet` method.
 {{< highlight java  >}}
@@ -118,5 +118,5 @@ Note that Spring will automatically inject an implementation for `DemoServerClie
 
 f. Hit http://localhost:8111/hello?name=World from your browser and it will print “Hello World”.
 
-> Important: Before trying the API from client service, make sure that both `demo-server` and `demo-client` are registered at the Eureka service.
+> Important: Before trying the API from client service, make sure that both `demo-server` and `demo-client` are registered at the Eureka server.
 
