@@ -39,14 +39,10 @@ pygmentsStyle = "tango"
   url = "/"
   weight = 1
   [[menu.nav]]
-  name = "About"
-  url = "/about/"
-  weight = 2
-  [[menu.nav]]
   name = "Tags"
   url = "/tags/"
-  weight = 3
+  weight = 2
   [[menu.nav]]
-  name = "RSS"
-  url = "/index.xml"
-  weight = 4
+  name = "About"
+  url = "/about/"
+  weight = 3

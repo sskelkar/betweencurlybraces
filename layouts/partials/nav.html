@@ -1,0 +1,13 @@
+<nav class="custom-navbar">
+  <div class="container">
+    {{ range .Site.Menus.nav }}
+    <a href="{{ .URL }}">{{ .Name }}</a>
+    {{ end }}
+
+    <a href="/index.xml">
+      <i class="fa fa-rss-square" style="font-size:17px;color:white;"></i>
+    </a>
+  </div>
+</nav>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
