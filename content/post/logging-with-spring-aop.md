@@ -59,5 +59,6 @@ Consider the first advice `noArgumentMethodInvoked`. The pointcut expression for
 There is a third advice to log the exceptions thrown my any method belonging to any class within com.maxxton.demo package. The exception is captured by the advice its message can be logged inside the advice body.
 
 Here’s a screenshot of the logs on running this application:
-![log](https://github.com/sskelkar/blog-posts/raw/master/images/spring-aop-1.png)
+
+{{< imgAbs pathURL="post/images/spring-aop-1.png" >}}
 
