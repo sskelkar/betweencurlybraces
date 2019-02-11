@@ -23,7 +23,8 @@ if (!order.isItReserved()) {
 }
 // do something
 {{</highlight>}}
-It took a while to wrap my head around this convoluted monstrosity. After going through the unit tests and discussing with the QAs, I was able to summarise the required functionality as following:
+It took a while to wrap my head around this bit of convolution. 
+After going through the unit tests and discussing with the QAs, I was able to summarise the required functionality as following:
 
 > If order is reserved, or current user is admin and order is confirmed, then do some work, else throw error.
   
