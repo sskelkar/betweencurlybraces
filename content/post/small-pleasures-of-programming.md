@@ -9,7 +9,10 @@ readingTime: 3
 ---
 It’s not just pulling off a complex engineering feat that makes programmers love their jobs. There are small pleasures to be had even in your day to day tasks, if you look for them.
 
-Seasoned programmers know the thrill of recognising the possibility to introduce an abstraction over duplication. A task as simple as renaming a variable can be the difference between obscurantism and lucidity. It’s the boy scout principle in action. Making your code a bit more pleasant to revisit. The joy one derives in these simple improvements is akin to Amelie’s _les petits plaisirs_.
+Seasoned programmers know the thrill of recognising the possibility to introduce an abstraction over duplication. 
+A task as simple as renaming a variable can be the difference between obscurantism and lucidity. 
+It’s the boy scout principle in action. Making your code a bit more pleasant to revisit. 
+The joy one derives in these simple improvements is akin to [Amelie](https://en.wikipedia.org/wiki/Am%C3%A9lie)’s _les petits plaisirs_.
 
 ![](https://thumbs.gfycat.com/AssuredGranularKestrel-small.gif)
 
