@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Functional Programming on betweencurlybraces</title>
+    <link>https://sskelkar.github.io/tags/functional-programming/</link>
+    <description>Recent content in Functional Programming on betweencurlybraces</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 08 Nov 2017 00:00:00 +0530</lastBuildDate>
+    
+	<atom:link href="https://sskelkar.github.io/tags/functional-programming/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Representing natural numbers in lambda calculus</title>
+      <link>https://sskelkar.github.io/representing-natural-numbers-in-lambda-calculus/</link>
+      <pubDate>Wed, 08 Nov 2017 00:00:00 +0530</pubDate>
+      
+      <guid>https://sskelkar.github.io/representing-natural-numbers-in-lambda-calculus/</guid>
+      <description>One of the joys of reading SICP is that apart from the main subject matter, we come across many tangential topics that are interesting in their own right. One such topic is mentioned in Exercise 2.6: Church numerals. Named after the mathematician Alonzo Church, Church numerals are a way of representing natural numbers in lambda calculus. But what is λ-calculus?
+From a programming perspective, λ-calculus can be thought of as the smallest universal programming language.</description>
+    </item>
+    
+    <item>
+      <title>Tail Recursion</title>
+      <link>https://sskelkar.github.io/tail-recursion/</link>
+      <pubDate>Wed, 26 Aug 2015 00:00:00 +0530</pubDate>
+      
+      <guid>https://sskelkar.github.io/tail-recursion/</guid>
+      <description>Tail recursion is one of those functional programming concepts that are likely to be unknown to someone coming from a Java background, like me. I encountered this term while skimming through the first few pages of SICP. After some quick R&amp;amp;D (i.e. googling), the following is a summary of what I have learnt.
+Before understanding tail recursion, we need to be familiar with the term tail call. Simply put, if in a function definition, the last instruction before returning is a function call, then that function call is called a tail call.</description>
+    </item>
+    
+    <item>
+      <title>Scheming with the Little Schemer</title>
+      <link>https://sskelkar.github.io/scheming-with-the-little-schemer/</link>
+      <pubDate>Wed, 05 Aug 2015 00:00:00 +0530</pubDate>
+      
+      <guid>https://sskelkar.github.io/scheming-with-the-little-schemer/</guid>
+      <description>From a very long time, I have been an admirer of Lisp, an often praised but seldom used programming language. Common consensus about Lisp is that it is the kind of language you don’t need to know to get your daily tasks done, but any programmer worth his salt should be familiar with its concepts.
+For a beginner, perhaps the easiest way to get a taste of Lisp is to go through The Little Schemer.</description>
+    </item>
+    
+    <item>
+      <title>Closures in JavaScript</title>
+      <link>https://sskelkar.github.io/closures-in-javascript/</link>
+      <pubDate>Mon, 20 Jul 2015 00:00:00 +0530</pubDate>
+      
+      <guid>https://sskelkar.github.io/closures-in-javascript/</guid>
+      <description>A good understanding of closures is a must-have skill for any JavaScript programmer. So let&amp;rsquo;s take a look at how they work with two simple examples.
+In JavaScript, functions are first class citizens. This means a function can be passed as an argument to another function, returned as the value from a function, assigned to a variable and stored in a data structure.
+We can even write a function within a function, and the inner function has access to the environment within which it was created.</description>
+    </item>
+    
+  </channel>
+</rss>

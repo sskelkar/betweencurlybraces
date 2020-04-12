@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on betweencurlybraces</title>
+    <link>https://sskelkar.github.io/tags/java/</link>
+    <description>Recent content in Java on betweencurlybraces</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 12 Jan 2019 00:00:00 +0530</lastBuildDate>
+    
+	<atom:link href="https://sskelkar.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Database integration tests for a Spring application</title>
+      <link>https://sskelkar.github.io/db-integration-tests-for-spring-app/</link>
+      <pubDate>Sat, 12 Jan 2019 00:00:00 +0530</pubDate>
+      
+      <guid>https://sskelkar.github.io/db-integration-tests-for-spring-app/</guid>
+      <description>Suppose you are tasked with writing tests for a Spring and Hibernate application. This application uses a mix of native queries, HQL or entity associations to fetch data from the database. If you choose to mock the DAO or entity layers, you leave a significant portion of the code untested. In such cases data integration tests can provide the most correct feedback. But you do you configure your application to run integration tests?</description>
+    </item>
+    
+    <item>
+      <title>Using thread dumps to analyse deadlocks</title>
+      <link>https://sskelkar.github.io/using-thread-dumps-to-analyze-deadlocks/</link>
+      <pubDate>Sat, 14 Oct 2017 00:00:00 +0530</pubDate>
+      
+      <guid>https://sskelkar.github.io/using-thread-dumps-to-analyze-deadlocks/</guid>
+      <description>In a multi-threaded Java application, a deadlock occurs when two threads wait forever attempting to acquire locks that are held by each other. Here’s a simple example to simulate a deadlock: public class Deadlock { private Object lock1; private Object lock2; public Deadlock(Object lock1, Object lock2) { this.lock1 = lock1; this.lock2 = lock2; } public void methodA() { System.out.println(&amp;#34;trying to acquire lock1 from - &amp;#34; + Thread.currentThread().getName()); synchronized (lock1) { someLongRunningTask(); methodB(); } } public void methodB() { System.</description>
+    </item>
+    
+    <item>
+      <title>Running time intensive operations in parallel with RxJava Observables</title>
+      <link>https://sskelkar.github.io/rxjava-observables/</link>
+      <pubDate>Thu, 01 Sep 2016 00:00:00 +0530</pubDate>
+      
+      <guid>https://sskelkar.github.io/rxjava-observables/</guid>
+      <description>Recently I delved into the RxJava library. In this post I will demonstrate how RxJava Observables can be used to execute two long running tasks in parallel, so as to reduce their overall execution time.
+While we can create threads for this purpose, an additional benefit of using Observables is that it provides a convenient way of collecting the results of the parallel tasks. With threads, this can get pretty complicated.</description>
+    </item>
+    
+    <item>
+      <title>Logging with Spring AOP</title>
+      <link>https://sskelkar.github.io/logging-with-spring-aop/</link>
+      <pubDate>Fri, 12 Feb 2016 00:00:00 +0530</pubDate>
+      
+      <guid>https://sskelkar.github.io/logging-with-spring-aop/</guid>
+      <description>Aspect oriented programming (AOP) is a way of separating the business login in your code from cross cutting concerns. What is a cross cutting concern?
+Analogy time. A typical house has different rooms that have designated functions. We keep our stuff in the rooms where they make sense. The living room is an unlikely location for a dishwasher and a bathtub belongs in the bathroom. But the electric circuit runs throughout the house because it is not tied to the functionality of any specific room.</description>
+    </item>
+    
+    <item>
+      <title>Memory profiling – simple examples</title>
+      <link>https://sskelkar.github.io/memory-profiling-simple-examples/</link>
+      <pubDate>Thu, 04 Feb 2016 00:00:00 +0530</pubDate>
+      
+      <guid>https://sskelkar.github.io/memory-profiling-simple-examples/</guid>
+      <description>Recently I have been trying to learn different memory profiling tools to monitor Java applications. I have looked into the command line tools that are shipped as part of JDK like jstat, jps, jvisualvm etc. Licensed tools like Yourkit provide wholesome information about a running JVM including memory usage, CPU time, thread count etc. Running a java application with -verbose:gc option prints memory usage of each generation after every garbage collection event.</description>
+    </item>
+    
+    <item>
+      <title>JPA Entity Relationships</title>
+      <link>https://sskelkar.github.io/jpa-entity-relationships/</link>
+      <pubDate>Fri, 15 Jan 2016 00:00:00 +0530</pubDate>
+      
+      <guid>https://sskelkar.github.io/jpa-entity-relationships/</guid>
+      <description>In a relational database, the relationships between two tables are defined by foreign keys. Typically, one table has a column that contains the primary key of another table’s row. In JPA, we deal with entity objects that are Java representations of database tables. So we need a different way for establishing relationship between two entities. JPA entity relationships define how these entities refer to each other.
+For the purpose of this article, I will work with JPA 2.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to jdb</title>
+      <link>https://sskelkar.github.io/introduction-to-jdb/</link>
+      <pubDate>Mon, 11 Jan 2016 00:00:00 +0530</pubDate>
+      
+      <guid>https://sskelkar.github.io/introduction-to-jdb/</guid>
+      <description>jdb (Java Debugger) is a simple command-line debugger for Java classes that is provided as part of the JDK tools and utilities.
+jdb is based on a server-client model. While debugging, you have one JVM where the code is executed and another JVM where debugger runs. Either VMs can act as the server. There are two ways to start the debugger. You can directly fire up the debugger by giving the main class name with the jdb command.</description>
+    </item>
+    
+    <item>
+      <title>Step by step guide to set up a service discovery environment</title>
+      <link>https://sskelkar.github.io/service-discovery-setup-guide/</link>
+      <pubDate>Thu, 17 Dec 2015 00:00:00 +0530</pubDate>
+      
+      <guid>https://sskelkar.github.io/service-discovery-setup-guide/</guid>
+      <description>In a microservices environment we can run multiple instances of a service for resilience and scalability. In a cloud environment these instances can go up and down arbitrarily. So we need some kind of service discovery mechanism to keep track of running instances. When a service A needs to call a service B, it asks for the address of any running instance of service B from the service discovery. The service discovery can also load balance the incoming requests.</description>
+    </item>
+    
+    <item>
+      <title>How to set up a local spring cloud config server</title>
+      <link>https://sskelkar.github.io/how-to-set-up-a-local-spring-cloud-config-server/</link>
+      <pubDate>Tue, 15 Dec 2015 00:00:00 +0530</pubDate>
+      
+      <guid>https://sskelkar.github.io/how-to-set-up-a-local-spring-cloud-config-server/</guid>
+      <description>From the official documentation,
+ Spring Cloud Config provides server and client-side support for externalized configuration in a distributed system. With the Config Server you have a central place to manage external properties for applications across all environments.
+ Steps to configure config server a. Create a new Gradle project for the config server. In https://start.spring.io/, select the starters for config server.
+b. In your project, navigate to src/main/resources. Rename the automatically generated application.</description>
+    </item>
+    
+    <item>
+      <title>Building with Gradle</title>
+      <link>https://sskelkar.github.io/building-with-gradle/</link>
+      <pubDate>Sat, 24 Oct 2015 00:00:00 +0530</pubDate>
+      
+      <guid>https://sskelkar.github.io/building-with-gradle/</guid>
+      <description>Gradle is a popular build tool to manage Java projects. Gradle’s build scripts are written in Groovy. The design of Gradle is aimed to be used as a language, not as a rigid framework. In this article, I want to give some basic idea about what a Gradle build script is composed of and some of the features provided by Gradle.
+Gradle is based upon two basic concepts: projects and tasks.</description>
+    </item>
+    
+    <item>
+      <title>How unit testing leads to improved code</title>
+      <link>https://sskelkar.github.io/how-unit-testing-leads-to-improved-code/</link>
+      <pubDate>Sun, 09 Aug 2015 00:00:00 +0530</pubDate>
+      
+      <guid>https://sskelkar.github.io/how-unit-testing-leads-to-improved-code/</guid>
+      <description>In Test Driven Development, the purpose of unit testing is to help us design our classes and not just to validate the correctness of our code. In this article I want to demonstrate how unit testing forces us to write better code, with help of an example. I will use Mockito for mocking.
+First, let me define the problem domain I’ll be using in the example. Suppose we have an online booking portal where customers make reservations for travel or accommodation.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Microservices on betweencurlybraces</title>
+    <link>https://sskelkar.github.io/tags/microservices/</link>
+    <description>Recent content in Microservices on betweencurlybraces</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 05 Dec 2016 00:00:00 +0530</lastBuildDate>
+    
+	<atom:link href="https://sskelkar.github.io/tags/microservices/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hystrix – a simple use case</title>
+      <link>https://sskelkar.github.io/hystrix-a-simple-use-case/</link>
+      <pubDate>Mon, 05 Dec 2016 00:00:00 +0530</pubDate>
+      
+      <guid>https://sskelkar.github.io/hystrix-a-simple-use-case/</guid>
+      <description>Hystrix is a fault tolerance library that is very useful for managing failures in a distributed environment like microservices. Suppose we have a service A dependent on service B, which is in turn dependent on service C.
+A -&amp;gt; B -&amp;gt; C Let&amp;rsquo;s say a call is made from A to B. To serve this request, B needs to call C but there’s a communication failure between them. If the call from B to C is wrapped in Hystrix mechanism, we prevent the failure being propagated to A.</description>
+    </item>
+    
+    <item>
+      <title>Step by step guide to set up a service discovery environment</title>
+      <link>https://sskelkar.github.io/service-discovery-setup-guide/</link>
+      <pubDate>Thu, 17 Dec 2015 00:00:00 +0530</pubDate>
+      
+      <guid>https://sskelkar.github.io/service-discovery-setup-guide/</guid>
+      <description>In a microservices environment we can run multiple instances of a service for resilience and scalability. In a cloud environment these instances can go up and down arbitrarily. So we need some kind of service discovery mechanism to keep track of running instances. When a service A needs to call a service B, it asks for the address of any running instance of service B from the service discovery. The service discovery can also load balance the incoming requests.</description>
+    </item>
+    
+    <item>
+      <title>How to set up a local spring cloud config server</title>
+      <link>https://sskelkar.github.io/how-to-set-up-a-local-spring-cloud-config-server/</link>
+      <pubDate>Tue, 15 Dec 2015 00:00:00 +0530</pubDate>
+      
+      <guid>https://sskelkar.github.io/how-to-set-up-a-local-spring-cloud-config-server/</guid>
+      <description>From the official documentation,
+ Spring Cloud Config provides server and client-side support for externalized configuration in a distributed system. With the Config Server you have a central place to manage external properties for applications across all environments.
+ Steps to configure config server a. Create a new Gradle project for the config server. In https://start.spring.io/, select the starters for config server.
+b. In your project, navigate to src/main/resources. Rename the automatically generated application.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spring on betweencurlybraces</title>
+    <link>https://sskelkar.github.io/tags/spring/</link>
+    <description>Recent content in Spring on betweencurlybraces</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 12 Jan 2019 00:00:00 +0530</lastBuildDate>
+    
+	<atom:link href="https://sskelkar.github.io/tags/spring/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Database integration tests for a Spring application</title>
+      <link>https://sskelkar.github.io/db-integration-tests-for-spring-app/</link>
+      <pubDate>Sat, 12 Jan 2019 00:00:00 +0530</pubDate>
+      
+      <guid>https://sskelkar.github.io/db-integration-tests-for-spring-app/</guid>
+      <description>Suppose you are tasked with writing tests for a Spring and Hibernate application. This application uses a mix of native queries, HQL or entity associations to fetch data from the database. If you choose to mock the DAO or entity layers, you leave a significant portion of the code untested. In such cases data integration tests can provide the most correct feedback. But you do you configure your application to run integration tests?</description>
+    </item>
+    
+    <item>
+      <title>Logging with Spring AOP</title>
+      <link>https://sskelkar.github.io/logging-with-spring-aop/</link>
+      <pubDate>Fri, 12 Feb 2016 00:00:00 +0530</pubDate>
+      
+      <guid>https://sskelkar.github.io/logging-with-spring-aop/</guid>
+      <description>Aspect oriented programming (AOP) is a way of separating the business login in your code from cross cutting concerns. What is a cross cutting concern?
+Analogy time. A typical house has different rooms that have designated functions. We keep our stuff in the rooms where they make sense. The living room is an unlikely location for a dishwasher and a bathtub belongs in the bathroom. But the electric circuit runs throughout the house because it is not tied to the functionality of any specific room.</description>
+    </item>
+    
+    <item>
+      <title>JPA Entity Relationships</title>
+      <link>https://sskelkar.github.io/jpa-entity-relationships/</link>
+      <pubDate>Fri, 15 Jan 2016 00:00:00 +0530</pubDate>
+      
+      <guid>https://sskelkar.github.io/jpa-entity-relationships/</guid>
+      <description>In a relational database, the relationships between two tables are defined by foreign keys. Typically, one table has a column that contains the primary key of another table’s row. In JPA, we deal with entity objects that are Java representations of database tables. So we need a different way for establishing relationship between two entities. JPA entity relationships define how these entities refer to each other.
+For the purpose of this article, I will work with JPA 2.</description>
+    </item>
+    
+  </channel>
+</rss>

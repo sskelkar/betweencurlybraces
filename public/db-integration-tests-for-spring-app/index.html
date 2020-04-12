@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <meta name="generator" content="Hugo 0.69.0" />
+
+  
+  <meta name="description" content="Personal blog of Sojjwal Kelkar">
+  
+
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="https://sskelkar.github.io/apple-touch-icon.png">
+
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="https://sskelkar.github.io/favicon-32x32.png">
+
+  
+  <link rel="icon" type="image/png" sizes="16x16" href="https://sskelkar.github.io/favicon-16x16.png">
+
+  
+  <link rel="manifest" href="https://sskelkar.github.io/site.webmanifest">
+
+  
+  <link rel="mask-icon" href="https://sskelkar.github.io/safari-pinned-tab.svg" color="#5bbad5">
+
+  <meta name="msapplication-TileColor" content="#da532c">
+
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <link rel="stylesheet" href="https://sskelkar.github.io/css/bootstrap.min.css" />
+
+  
+  <title>Database integration tests for a Spring application | betweencurlybraces</title>
+  
+
+  <style>
+body {
+  min-width: 300px;
+}
+
+.custom-navbar {
+  margin-bottom: 1em;
+  height: 60px;
+}
+
+.custom-navbar a {
+  display: inline-block; 
+  padding: 18px 0;
+  margin-right: 1em; 
+  font-weight: bold; 
+}
+
+.custom-navbar a:hover,
+.custom-navbar a:focus {
+  text-decoration: none; 
+}
+
+@media print {
+  .custom-navbar {
+    display: none;
+  }
+}
+
+article {
+  padding-bottom: 1em;
+}
+
+img {
+  max-width: 100%;
+}
+
+
+body {
+  background-color: #fff;
+}
+
+
+
+body {
+  color: #212529;
+}
+
+
+
+a {
+  color: #007bff;
+}
+
+
+
+a:hover,
+a:focus {
+  color: #0056b3;
+}
+
+
+
+.custom-navbar {
+  background-color: #212529;
+}
+
+
+
+.custom-navbar a {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+
+
+.custom-navbar a:hover,
+.custom-navbar a:focus {
+  color: rgba(255, 255, 255, 1);
+}
+
+
+
+.container {
+  max-width: 800px;
+}
+
+
+
+pre {
+  display: block;
+  padding: 9.5px;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+pre code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit; 
+  white-space: pre-wrap;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+}
+
+code {
+  padding: 2px 4px;
+  color: inherit; 
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: .9em;
+}
+
+
+
+blockquote,
+.blockquote {
+  padding: 10px 20px;
+  margin: 0 0 20px;
+  font-size: 1em;
+  border-left: 5px solid #6c757d;
+}
+
+</style>
+</head>
+
+<body>
+  <nav class="custom-navbar">
+  <div class="container">
+    
+    <a href="/">Blog</a>
+    
+    <a href="/tags/">Tags</a>
+    
+    <a href="/about/">About</a>
+    
+
+    <a href="/index.xml">
+      <i class="fa fa-rss-square" style="font-size:17px;color:white;"></i>
+    </a>
+  </div>
+</nav>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  
+  <div class="container">
+    <article>
+      <h1>Database integration tests for a Spring application</h1>
+<p>
+  <small class="text-secondary">
+  
+  
+  Posted on Jan 2019
+    by
+    <b>Sojjwal Kelkar</b>
+    &nbsp;|&nbsp;
+  18 min read
+    &nbsp;&nbsp;
+  </small>
+  
+
+<small><code><a href="https://sskelkar.github.io/tags/java">Java</a></code></small>
+
+
+<small><code><a href="https://sskelkar.github.io/tags/spring">Spring</a></code></small>
+
+
+<small><code><a href="https://sskelkar.github.io/tags/unit-testing">Unit Testing</a></code></small>
+
+</p>
+<p>Suppose you are tasked with writing tests for a Spring and Hibernate application. This application uses a mix of native queries, HQL or entity associations to fetch data from the database. If you choose to mock the DAO or entity layers, you leave a significant portion of the code untested. In such cases data integration tests can provide the most correct feedback. But you do you configure your application to run integration tests?</p>
+<p>To demonstrate this, I have created a simple Spring MVC and Hibernate application that connects with MySQL database. The code is available in the <a href="https://github.com/sskelkar/spring-database-test">spring-database-test</a> repo on Github. This application has a simple use case. We have two types of entities – <code>Department</code> and <code>Employee</code>. In <code>DepartmentService</code>, we have a single method that interacts with the DAO layer to fetch all the employees belonging to a department. This application uses both XML and annotation based configuration. The Spring and Hibernate config files are present in the resources folder.</p>
+<p>In this post, I’ll show two ways of writing database integration tests for this app.</p>
+<h3 id="1-using-dockerized-mysql-instance">1. Using Dockerized MySQL instance</h3>
+<p>While a production app points to a fixed database, it is not feasible to have the same for running tests. We’d like to start up a temporary instance of a database, set it up with our production schema, run the tests against it and shut it down in the end. With the advancements in container technology, it is now very convenient to start a MySQL instance inside a docker container. The application can be pointed to it while running tests. After all the tests are run, the container can be shutdown.</p>
+<p>I’ll use the <a href="https://www.testcontainers.org/"><code>Testcontainers</code></a> library to provide a temporary MySQL database container to the integration tests. This library provides an API to instantiate a docker container with MySQL server running in it. We can use an SQL script to set up the schema in the database, and specify it as an <code>init script</code>.</p>
+<p>If you have already cloned the <a href="https://github.com/sskelkar/spring-database-test"><code>spring-database-test</code></a> repo, you need to checkout the mysql branch to access the code for this dockerized MySQL demo.</p>
+<p>While running tests, we need to change the datasource config of our spring app, so that it points to the MySQL docker container. We will use annotation based Spring configuration as shown in the <code>TestConfiguration</code> class. <code>Testcontainers</code> library supports several types of databases. For MySQL, we will use the <code>MySQLContainer</code> class. We can specify the MySQL version while instantiating the <code>MySQLContainer</code> object and provide the location of an init script before starting the docker container. In this init script I will create the department and employee tables.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#5c35cc;font-weight:bold">@Bean</span>
+<span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">DataSource</span> <span style="color:#000">dataSource</span><span style="color:#ce5c00;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+  <span style="color:#000">MySQLContainer</span> <span style="color:#000">mysql</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">MySQLContainer</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;mysql:5.6.42&#34;</span><span style="color:#ce5c00;font-weight:bold">);</span>
+  <span style="color:#000">mysql</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">withInitScript</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;database.sql&#34;</span><span style="color:#ce5c00;font-weight:bold">).</span><span style="color:#c4a000">start</span><span style="color:#ce5c00;font-weight:bold">();</span>
+  <span style="color:#000">HikariConfig</span> <span style="color:#000">hikariConfig</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">HikariConfig</span><span style="color:#ce5c00;font-weight:bold">();</span>
+  <span style="color:#000">hikariConfig</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">setDriverClassName</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">mysql</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getDriverClassName</span><span style="color:#ce5c00;font-weight:bold">());</span>
+  <span style="color:#000">hikariConfig</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">setJdbcUrl</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">mysql</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getJdbcUrl</span><span style="color:#ce5c00;font-weight:bold">());</span>
+  <span style="color:#000">hikariConfig</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">setUsername</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">mysql</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getUsername</span><span style="color:#ce5c00;font-weight:bold">());</span>
+  <span style="color:#000">hikariConfig</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">setPassword</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">mysql</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getPassword</span><span style="color:#ce5c00;font-weight:bold">());</span>
+
+  <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">HikariDataSource</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">hikariConfig</span><span style="color:#ce5c00;font-weight:bold">);</span>
+<span style="color:#ce5c00;font-weight:bold">}</span></code></pre></div>
+<p>From <code>MySQLContainer</code>, we can get the database url and credentials that we can pass into HikariConfig to create the datasource. Using the datasource bean, we can initialise the SessionFactory bean.</p>
+<p>The test class is extended from <code>AbstractTransactionalJUnit4SpringContextTests</code> that does two things. It provides a <code>JdbcTemplate</code> object that can be used to execute database commands or query from the unit test. And it makes each unit test transactional.</p>
+<p>Finally let’s take a look at a simple unit test.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#5c35cc;font-weight:bold">@Test</span>
+<span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">shouldReturnEmployeesInAGivenDepartment</span><span style="color:#ce5c00;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+  <span style="color:#8f5902;font-style:italic">//given
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#000">jdbcTemplate</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">execute</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;insert into department values(30, &#39;admin&#39;)&#34;</span><span style="color:#ce5c00;font-weight:bold">);</span>
+  <span style="color:#000">jdbcTemplate</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">execute</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;insert into department values(40, &#39;support&#39;)&#34;</span><span style="color:#ce5c00;font-weight:bold">);</span>
+  <span style="color:#000">jdbcTemplate</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">execute</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;insert into employee values(1, &#39;john&#39;, 30)&#34;</span><span style="color:#ce5c00;font-weight:bold">);</span>
+  <span style="color:#000">jdbcTemplate</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">execute</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;insert into employee values(2, &#39;paul&#39;, 30)&#34;</span><span style="color:#ce5c00;font-weight:bold">);</span>
+  <span style="color:#000">jdbcTemplate</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">execute</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;insert into employee values(3, &#39;george&#39;, 40)&#34;</span><span style="color:#ce5c00;font-weight:bold">);</span>
+
+  <span style="color:#8f5902;font-style:italic">//when
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#000">List</span> <span style="color:#000">employees</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">departmentService</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getEmployeesInDepartment</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;admin&#34;</span><span style="color:#ce5c00;font-weight:bold">);</span>
+
+  <span style="color:#8f5902;font-style:italic">//then
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#000">assertEquals</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">2</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">employees</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">size</span><span style="color:#ce5c00;font-weight:bold">());</span>
+  <span style="color:#000">assertEquals</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">asList</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">1</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">2</span><span style="color:#ce5c00;font-weight:bold">),</span> <span style="color:#000">employees</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">stream</span><span style="color:#ce5c00;font-weight:bold">().</span><span style="color:#c4a000">map</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">Employee</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">getId</span><span style="color:#ce5c00;font-weight:bold">).</span><span style="color:#c4a000">collect</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">toList</span><span style="color:#ce5c00;font-weight:bold">()));</span>
+<span style="color:#ce5c00;font-weight:bold">}</span></code></pre></div>
+<p>The <code>JdbcTemplate</code> is used to set up some data. <code>DepartmentService</code> bean is autowired in the unit test and it interacts with real data. After all the tests are run, <code>MySQLContainer</code> will shutdown the docker container automatically.</p>
+<p>An advantage of this approach is that we can use and test actual MySQL constructs in our unit tests that may be missing in an in-memory database. Secondly, if we have database migrations in our project while setting up a new environment, we can run the same migrations on the test database and simulate the production environment as closely as possible. But an obvious disadvantage is the increase in time taken to run the tests. Starting up the docker container itself can increase the testing time by 10-15 seconds.</p>
+<h3 id="2-using-h2-in-memory-database">2. Using H2 in-memory database</h3>
+<p>We can reduce the testing time by using an in-memory database. In this part of the demo I’ll reimplement the above unit test using H2 database instead of MySQL. But beware that this approach won’t work if you’re using any MySQL specific constructs in your code that aren’t available in H2. The code for this is in the h2 branch of spring-database-test repo.</p>
+<p>The datasource is created as following:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#5c35cc;font-weight:bold">@Bean</span>
+<span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">DataSource</span> <span style="color:#000">dataSource</span><span style="color:#ce5c00;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+  <span style="color:#000">HikariConfig</span> <span style="color:#000">hikariConfig</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">HikariConfig</span><span style="color:#ce5c00;font-weight:bold">();</span>
+  <span style="color:#000">hikariConfig</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">setDriverClassName</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;org.h2.Driver&#34;</span><span style="color:#ce5c00;font-weight:bold">);</span>
+  <span style="color:#000">hikariConfig</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">setJdbcUrl</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;jdbc:h2:mem:example&#34;</span><span style="color:#ce5c00;font-weight:bold">);</span>
+  <span style="color:#000">hikariConfig</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">setUsername</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;test&#34;</span><span style="color:#ce5c00;font-weight:bold">);</span>
+  <span style="color:#000">hikariConfig</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">setPassword</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;test&#34;</span><span style="color:#ce5c00;font-weight:bold">);</span>
+
+  <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">HikariDataSource</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">hikariConfig</span><span style="color:#ce5c00;font-weight:bold">);</span>
+<span style="color:#ce5c00;font-weight:bold">}</span></code></pre></div>
+<p>In hibernate properties, we use <code>H2Dialect</code> now. One important change is the addition of a new property <code>hibernate.hbm2ddl.auto</code>, which is set to create. This will automatically create the schema based on your model structure. If this feels too lax, we can create the schema using a script just like we did in the previous example.</p>
+<p>You will notice that the unit test in this case is exactly identical to what we wrote in the previous demo. This means that the tests are database agnostic. This gives us the flexibility of using either of the above approach while running the tests.</p>
+<h3 id="3-toggle-between-h2-and-mysql">3. Toggle between H2 and MySQL</h3>
+<p>We can create the datasource bean using either h2 or MySQL container depending on a system property. During development, we can use h2 because it has a shorter running time. Quicker feedback is desirable during TDD or general coding. On the other hand, we’d want to be thorough before the actual deployment. So MySQL can be used while building the project in the CI/CD pipeline.</p>
+<p>Firstly, in order to pass in system properties in our project during test or build tasks, we need to add the following in <code>build.gradle</code>:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000">test</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">systemProperties</span> <span style="color:#000">System</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">properties</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p>In <code>TestConfiguration</code>, we check the value of the system property to decide how to create the datasource.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#204a87;font-weight:bold">private</span> <span style="color:#204a87;font-weight:bold">static</span> <span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">ForUsingMySQL</span> <span style="color:#204a87;font-weight:bold">implements</span> <span style="color:#000">Condition</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+  <span style="color:#5c35cc;font-weight:bold">@Override</span>
+  <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">boolean</span> <span style="color:#000">matches</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">ConditionContext</span> <span style="color:#000">context</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">AnnotatedTypeMetadata</span> <span style="color:#000">metadata</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+    <span style="color:#000">Environment</span> <span style="color:#000">env</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">context</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getEnvironment</span><span style="color:#ce5c00;font-weight:bold">();</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#4e9a06">&#34;mysql&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">equals</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">env</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getProperty</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;testDB&#34;</span><span style="color:#ce5c00;font-weight:bold">));</span>
+  <span style="color:#ce5c00;font-weight:bold">}</span>
+<span style="color:#ce5c00;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">private</span> <span style="color:#204a87;font-weight:bold">static</span> <span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">ForUsingH2</span> <span style="color:#204a87;font-weight:bold">implements</span> <span style="color:#000">Condition</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+  <span style="color:#5c35cc;font-weight:bold">@Override</span>
+  <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">boolean</span> <span style="color:#000">matches</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">ConditionContext</span> <span style="color:#000">context</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">AnnotatedTypeMetadata</span> <span style="color:#000">metadata</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+    <span style="color:#000">Environment</span> <span style="color:#000">env</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">context</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getEnvironment</span><span style="color:#ce5c00;font-weight:bold">();</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#ce5c00;font-weight:bold">!</span><span style="color:#4e9a06">&#34;mysql&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">equals</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">env</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getProperty</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;testDB&#34;</span><span style="color:#ce5c00;font-weight:bold">));</span>
+  <span style="color:#ce5c00;font-weight:bold">}</span>
+<span style="color:#ce5c00;font-weight:bold">}</span>
+
+<span style="color:#5c35cc;font-weight:bold">@Bean</span>
+<span style="color:#5c35cc;font-weight:bold">@Conditional</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">ForUsingH2</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">class</span><span style="color:#ce5c00;font-weight:bold">)</span>
+<span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">DatabaseProperties</span> <span style="color:#000">h2DatabaseProperties</span><span style="color:#ce5c00;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+  <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">DatabaseProperties</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;org.h2.Driver&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;jdbc:h2:mem:ia&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;org.hibernate.dialect.H2Dialect&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">true</span><span style="color:#ce5c00;font-weight:bold">);</span>
+<span style="color:#ce5c00;font-weight:bold">}</span>
+
+<span style="color:#5c35cc;font-weight:bold">@Bean</span>
+<span style="color:#5c35cc;font-weight:bold">@Conditional</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">ForUsingMySQL</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">class</span><span style="color:#ce5c00;font-weight:bold">)</span>
+<span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">DatabaseProperties</span> <span style="color:#000">mysqlDatabaseProperties</span><span style="color:#ce5c00;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+  <span style="color:#000">MySQLContainer</span> <span style="color:#000">mysql</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">MySQLContainer</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;mysql:5.6.42&#34;</span><span style="color:#ce5c00;font-weight:bold">);</span>
+  <span style="color:#000">mysql</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">withInitScript</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;database.sql&#34;</span><span style="color:#ce5c00;font-weight:bold">).</span><span style="color:#c4a000">start</span><span style="color:#ce5c00;font-weight:bold">();</span>
+  <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">DatabaseProperties</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">mysql</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getDriverClassName</span><span style="color:#ce5c00;font-weight:bold">(),</span> <span style="color:#000">mysql</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getJdbcUrl</span><span style="color:#ce5c00;font-weight:bold">(),</span> <span style="color:#4e9a06">&#34;org.hibernate.dialect.MySQL5InnoDBDialect&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">false</span><span style="color:#ce5c00;font-weight:bold">);</span>
+<span style="color:#ce5c00;font-weight:bold">}</span>
+
+<span style="color:#5c35cc;font-weight:bold">@Bean</span>
+<span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">DataSource</span> <span style="color:#000">dataSource</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">DatabaseProperties</span> <span style="color:#000">databaseProperties</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+  <span style="color:#000">HikariConfig</span> <span style="color:#000">hikariConfig</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">HikariConfig</span><span style="color:#ce5c00;font-weight:bold">();</span>
+  <span style="color:#000">hikariConfig</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">setDriverClassName</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">databaseProperties</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getDriverClass</span><span style="color:#ce5c00;font-weight:bold">());</span>
+  <span style="color:#000">hikariConfig</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">setJdbcUrl</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">databaseProperties</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getJdbcUrl</span><span style="color:#ce5c00;font-weight:bold">());</span>
+  <span style="color:#000">hikariConfig</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">setUsername</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">databaseProperties</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getUsername</span><span style="color:#ce5c00;font-weight:bold">());</span>
+  <span style="color:#000">hikariConfig</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">setPassword</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">databaseProperties</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getPassword</span><span style="color:#ce5c00;font-weight:bold">());</span>
+
+  <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">HikariDataSource</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">hikariConfig</span><span style="color:#ce5c00;font-weight:bold">);</span>
+<span style="color:#ce5c00;font-weight:bold">}</span></code></pre></div>
+<p>If we build the project with command <code>gradle clean build -DtestDB=mysql</code>, The <code>@Conditional</code> of <code>mysqlDatabaseProperties()</code> kicks in, <code>MySQLContainer</code> is initialized and the datasource is created using MySQL properties. If we try running the build without <code>testDB</code> property, datasource will be created using H2 properties and tests will run against H2.</p>
+
+
+<a href="#top">Top</a>
+    </article>
+  </div>
+
+  
+  
+  
+  <script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-123456789-1', 'auto');
+  ga('send', 'pageview');
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  
+
+  
+
+  
+</body>
+
+</html>
