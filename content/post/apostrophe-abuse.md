@@ -7,6 +7,5 @@ tags:
 - Cartoons
 readingTime: 1
 ---
-<div>
-    {{< imgAbs pathURL="post/images/apostrophe.jpg" >}}
-</div>
+{{< imgAbs pathURL="post/images/apostrophe.jpg" >}}
+&nbsp;

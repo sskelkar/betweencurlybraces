@@ -15,6 +15,5 @@ Of course languages are used differently in different parts of the world. But I 
 
 And yes, I used MS Paint because I don’t actually know how to draw :-(.
 
-<div>
-    {{< imgAbs pathURL="post/images/xmen3.png" >}}
-</div>
+
+{{< imgAbs pathURL="post/images/xmen3.png" >}}
