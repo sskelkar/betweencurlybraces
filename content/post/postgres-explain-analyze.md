@@ -90,8 +90,58 @@ A bitmap index scan fetches all the tuple-pointers from the index at once and so
 This method of row scanning has an overhead of maintaining the in-memory bitmap. If the bitmap gets too large, then we maintain only the references of the heap pages that contain matching tuples instead of keeping track of individual tuples within those pages. The whole page is loaded and the tuples are filtered on Recheck Condition to get the desired data. 
 
 ## Joining tables
-#### Nested Loop join
+#### Nested loop join
+{{< highlight sql >}}
+explain select p.name, t.name from players p join teams t on (t.id = p.team_id);
+                                   QUERY PLAN
+------------------------------------------------------------------------------
+ Nested Loop  (cost=0.56..2761623.95 rows=36867792 width=14)
+   ->  Seq Scan on teams t  (cost=0.00..5528.03 rows=44303 width=14)
+   ->  Materialize  (cost=0.29..8.51 rows=10 width=244)
+     ->  Index Only Scan using index_players_on_team_id on players p  (cost=0.56..47.13 rows=1508 width=4)
+           Index Cond: (team_id = t.id)
+{{< /highlight >}}
 
+This method of joining two tables is preferred when one side of the join has few rows. In the above query plan all the tables are fetched via sequential scan. Then for each team id, an index scan is performed on the players table to fetch the corresponding rows. 
+
+In a nested loop join is performed on two nodes. A node can be a table or an intermediary step in a query plan. The second node of the join is looped over for each row in the first node. This method works better when the second node (the one that is being looped over) can be index scanned. The join column value from each row of the first node (team id in the above example) serves as the key for the index scan of the second node.
+
+In the above query plan, there's a 'Materialize' node above the index scan on players table. Because in a nested loop join the second relation is accessed several times, the Materialize node saves its data in memory after the first pass. The same in-memory data is used in each subsequent pass.
+
+Nested loop join is the only method of joining tables if the join condition does not use the equality operator.
+
+#### Hash join
+{{< highlight sql >}}
+explain select p.name, t.name from players p join teams t on (t.id = p.team_id);
+                                   QUERY PLAN
+------------------------------------------------------------------------------
+ Hash Join  (cost=6082.38..1557549.17 rows=36867792 width=14)
+   Hash Cond: (p.team_id = t.id)
+   ->  Index Only Scan using index_players_on_team_id on players p  (cost=0.56..1454680.32 rows=36867792 width=4)
+   ->  Hash  (cost=5528.03..5528.03 rows=44303 width=14)
+         ->  Seq Scan on teams t  (cost=0.00..5528.03 rows=44303 width=14)
+{{< /highlight >}}
+
+In a hash join, the relation on the right side of the join is scanned and loaded into an in-memory hash table using its join attribute as the hash key. Then the left relation is scanned and the join attribute is used to look up matching row of the second relation in the hash table.
+
+This join method can be used when the join condition uses the equality operator, both sides of the join are large and the hash can fit in the memory.
+
+#### Merge join
+{{< highlight sql >}}
+explain select p.name, t.name from players p join teams t on (t.id = p.team_id);
+                                   QUERY PLAN
+------------------------------------------------------------------------------
+ Merge Join  (cost=198.11..268.19 rows=10 width=488)
+   Merge Cond: (p.team_id = t.id)
+   ->  Index Scan using index_players_on_team_id on players p  (cost=0.29..656.28 rows=101 width=244)
+   ->  Sort  (cost=197.83..200.33 rows=1000 width=244)
+         Sort Key: t.id
+         ->  Seq Scan on teams t  (cost=0.00..148.00 rows=1000 width=244)
+{{< /highlight >}}
+
+In this join method, both relations are first sorted on the join attribute. Then the two relations are scanned in parallel to find the matching rows. This method can be used when the join condition uses the equality operator, both sides of the join are large but can be efficiently sorted on the join attribute. 
+
+In the above example, players is sorted using the index on team_id column. The team table could also be sorted on its primary key. But in this instance, the query planner preferred a sequential scan and sort. A sequential scan and sort is preferable than an index sort when the table is large and cost of the nonsequential disk access required by the index scan is higher than a simple full scan and sorting.
 
 ## Cost estimation  
 Each node is accompanied by a cost estimation that takes the form `(cost=10.00..20.00 rows=1 width=8)`. The costs are measured in an arbitrary unit determined by the planner's cost parameters. One of the ways the cost can be measured is in the unit of disk page fetches. The cost of an upper level node includes the cost of all its child nodes. Brief description of each field in the cost estimation:
@@ -99,11 +149,12 @@ Each node is accompanied by a cost estimation that takes the form `(cost=10.00..
 * rows: Estimated number of rows emitted by a plan node
 * width: Estimated average width of rows emitted by a plan node in bytes.
 
+## EXPLAIN ANALYZE
 `EXPLAIN` by itself just provides the query plan with cost estimation. If we execute a query with `EXPLAIN ANALYZE`, the query is actually executed. In each plan node, the true row count and the true run time is displayed along with the estimates. So that we can check the accuracy of the planner's estimation.
  {{< highlight sql >}}
 explain analyze select count(*) from users where created_at > '2020-04-01';
-                                                   QUERY PLAN
------------------------------------------------------------------------------------------------------------------
+                                  QUERY PLAN
+------------------------------------------------------------------------------
  Aggregate  (cost=3356.22..3356.23 rows=1 width=8) (actual time=7.357..7.358 rows=1 loops=1)
    ->  Seq Scan on users  (cost=0.00..3350.90 rows=2126 width=0) (actual time=0.007..7.241 rows=2132 loops=1)
          Filter: (created_at > '2020-04-01 00:00:00'::timestamp without time zone)
@@ -113,3 +164,8 @@ explain analyze select count(*) from users where created_at > '2020-04-01';
 (6 rows)
 {{< /highlight >}}
 
+Depending on the query plan, EXPLAIN ANALYZE provides much richer information than just actual costs. This includes:
+* The number of actual loops performed in a nested loop join
+* If sorting was involved, then the algorithm and the amount of memory used for sorting
+* If hash joins were involved, the number of hash buckets and the peak memory used for hash tables
+* Rows rejected by a filter condition or an index recheck
