@@ -1,6 +1,6 @@
 # betweencurlybraces
 
-####Commands
+### Commands
 
 * `brew install hugo`
 * `hugo new posts/my-first-post.md`
@@ -8,7 +8,7 @@
 * `./deploy.sh` (To build the project and deploy to [sskelkar.github.io](https://github.com/sskelkar/sskelkar.github.io))
 
 
-###Minimal theme
+### Minimal theme
 * The [minimal-bootstrap-hugo-theme](https://github.com/zwbetz-gh/minimal-bootstrap-hugo-theme/tree/master/layouts) provides a default layout.
 * This can be overwritten if you want to add more content/bells/whistles on top of the default layout.
 * This is done by copying all relevant pages from the theme's layouts folder to the blog repo's layouts folder.
@@ -16,7 +16,7 @@
 * If pages aren't rendering as expected, perhaps the code in the theme has changed. Again copy the theme layout code and apply your custom changes on top of it.
 * `git submodule update --remote --merge` to get fresh pull of theme
 
-###How it works
+### How it works
 * GitHub Pages serves the blog from the [this repo](https://github.com/sskelkar/sskelkar.github.io) from the branch specified in the repo's Settings.
 * When you clone this repo and build the blog using `hugo` command, the resources are generated in the 'public' folder.
 * This public folder should point to the above repo that is used to serve the GitHub Pages.
