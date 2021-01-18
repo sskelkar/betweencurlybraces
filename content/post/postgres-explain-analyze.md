@@ -49,7 +49,7 @@ explain select count(*) from users where created_at < '2020-01-01';
 In a sequential (or full) table scan, all table rows are loaded into the memory. If the query has any filtering criteria, they will be applied in-memory on the appropriate columns. The rows that satisfy the filtering condition are transmitted further. This method is used when indexes are not present on columns present in the query predicate (where clause). In the above example, all user rows are fetched and the rows that fail on the created_at condition are discarded. 
 
 Even though a sequential scan may seem like a slow way of fetching data, a query planner may employ this approach even when an index is present on the filtering column. This may happen if:
-* A table has very few rows. An index scan requires random seeks. If the whole table can fit whithin a few pages, it is just cheaper to load all those pages into memory, thus avoiding the overhead of random seeks.
+* A table has very few rows. An index scan requires random seeks. If the whole table can fit within a few pages, it is just cheaper to load all those pages into memory, thus avoiding the overhead of random seeks.
 * A query would return a large percentage of table rows. If suppose you've a query that would return 90% of all rows in a large table. In such a case, each page contains several rows that satisfy the query predicate. Again, fetching the whole page at once trumps over performing random seek that would access the same page several times.
 
 Databases maintain query statistics to determine when to use sequential scan over index scan.
