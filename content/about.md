@@ -4,8 +4,9 @@ draft = false
 title = "about me"
 menu = "main"
 +++
-My name is Sojjwal Kelkar. I am a software developer based in Pune, India.
+My name is Sojjwal Kelkar. I am a software developer based in Berlin, Germany.
 
+{{< rawhtml >}}
 <div style="display:inline-block;">
     <a href="https://www.linkedin.com/in/sskelkar/">
         <i class="fa fa-linkedin-square" style="font-size:35px"></i>
@@ -24,4 +25,6 @@ My name is Sojjwal Kelkar. I am a software developer based in Pune, India.
     </a>
 </div>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{{< /rawhtml >}} 
