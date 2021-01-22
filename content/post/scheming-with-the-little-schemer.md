@@ -5,7 +5,7 @@ draft: false
 author: "Sojjwal Kelkar"
 tags:
 - Functional Programming
-readingTime: 2
+- Coding is fun
 ---
 From a very long time, I have been an admirer of Lisp, an often praised but seldom used programming language. Common consensus about Lisp is that it is the kind of language you don’t need to know to get your daily tasks done, but any programmer worth his salt should be familiar with its concepts.
 

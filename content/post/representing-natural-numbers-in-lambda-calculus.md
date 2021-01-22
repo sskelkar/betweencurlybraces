@@ -1,11 +1,9 @@
 ---
 title: "Representing natural numbers in lambda calculus"
 date: 2017-11-08T00:00:00+05:30
-draft: false
-author: "Sojjwal Kelkar"
 tags:
 - Functional Programming
-readingTime: 5
+- Coding is fun
 ---
 
 One of the joys of reading [SICP](https://mitpress.mit.edu/sicp/full-text/book/book.html) is that apart from the main subject matter, we come across many tangential topics that are interesting in their own right. One such topic is mentioned in `Exercise 2.6`: Church numerals. Named after the mathematician Alonzo Church, Church numerals are a way of representing natural numbers in lambda calculus. But what is λ-calculus?

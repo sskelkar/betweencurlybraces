@@ -1,8 +1,6 @@
 ---
 title: "Introduction to jdb"
 date: 2016-01-11T00:00:00+05:30
-draft: false
-author: "Sojjwal Kelkar"
 tags:
 - Java
 readingTime: 5

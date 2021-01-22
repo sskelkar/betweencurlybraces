@@ -1,48 +1,79 @@
 baseURL = "https://sskelkar.github.io/"
-languageCode = "en-us"
-title = "betweencurlybraces"
-theme = "minimal-bootstrap-hugo-theme"
-pygmentsStyle = "tango"
+title = "Sojjwal Kelkar"
+subtitle = "Full Stack Software Engineer"
+pygmentsStyle = "trac"
+DefaultContentLanguage = "en"
+theme = "beautifulhugo"
+metaDataFormat = "yaml"
+pygmentsUseClasses = true
+pygmentsCodeFences = true
+pygmentsCodefencesGuessSyntax = true
+#pygmentsUseClassic = true
+#pygmentOptions = "linenos=inline"
+#disqusShortname = "XXX"
+#googleAnalytics = "XXX"
 
-[author]
-    name = "Sojjwal Kelkar"
+[Params]
+#  homeTitle = "Sojjwal Kelkar"
+#  subtitle = "Full Stack Software Engineer"
+#  mainSections = ["post","posts"]
+#  logo = "img/avatar-icon.png" # Expecting square dimensions
+#  favicon = "img/favicon.ico"
+  dateFormat = "Jan 2, 2006"
+  commit = false
+  rss = true
+  comments = true
+  readingTime = true
+#  wordCount = true
+  useHLJS = true
+  socialShare = false
+  delayDisqus = true
+  showRelatedPosts = true
+  hideAuthor = true
+#  gcse = "012345678901234567890:abcdefghijk" # Get your code from google.com/cse. Make sure to go to "Look and Feel" and change Layout to "Full Width" and Theme to "Classic"
 
-[taxonomies]
-  tag = "tags"
+#[[Params.bigimg]]
+#  src = "img/triangle.jpg"
+#  desc = "Triangle"
+#[[Params.bigimg]]
+#  src = "img/sphere.jpg"
+#  desc = "Sphere"
+#  # position: see values of CSS background-position.
+#  position = "center top"
+#[[Params.bigimg]]
+#  src = "img/hexagon.jpg"
+#  desc = "Hexagon"
 
-[permalinks]
-  post = "/:filename/"
+[Author]
+  name = "Sojjwal Kelkar"
+  email = "sojjwalkelkar@gmail.com"
+  github = "sskelkar"
+  linkedin = "sskelkar"
+  #stackoverflow = "users/XXXXXXX/username"
 
-[params]
-  description = "Personal blog of Sojjwal Kelkar"
-  contentBackgroundColor = "#fff"
-  contentTextColor = "#212529"
-  contentLinkColor = "#007bff"
-  contentLinkHoverColor = "#0056b3"
-  navbarBackgroundColor = "#212529"
-  navbarLinkColor = "rgba(255, 255, 255, 0.75)"
-  navbarLinkHoverColor = "rgba(255, 255, 255, 1)"
-  wrapperMaxWidth = "800px"
-  customDateFormat = "Jan 2006"
-  customCodeStyle = true
-  customBlockquoteStyle = true
-  showPostSummary = false
-  googleAnalytics = "UA-123456789-1"
-  includeBootstrapJs = false
-  faviconSafariPinnedTabColor = "#5bbad5"
-  faviconMsApplicationTileColor = "#da532c"
-  faviconThemeColor = "#ffffff"
+[[menu.main]]
+    name = "Tech Blog"
+    url = ""
+    weight = 1
 
-[menu]
-  [[menu.nav]]
-  name = "Blog"
-  url = "/"
-  weight = 1
-  [[menu.nav]]
-  name = "Tags"
-  url = "/tags/"
-  weight = 2
-  [[menu.nav]]
-  name = "About"
-  url = "/about/"
-  weight = 3
+[[menu.main]]
+    name = "Cartoons"
+    url = "cartoons"
+    weight = 2
+
+[[menu.main]]
+    name = "About"
+    url = "about"
+    weight = 3
+
+[[menu.main]]
+    name = "Tags"
+    url = "tags"
+    weight = 5
+
+
+
+
+
+
+

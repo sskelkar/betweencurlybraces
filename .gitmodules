@@ -5,3 +5,6 @@
 	path = public
 	url = git@github.com:sskelkar/sskelkar.github.io.git
 	branch = master
+[submodule "themes/beautifulhugo"]
+	path = themes/beautifulhugo
+	url = https://github.com/halogenica/beautifulhugo.git

@@ -1,11 +1,8 @@
 ---
 title: "Tail Recursion"
 date: 2015-08-26T00:00:00+05:30
-draft: false
-author: "Sojjwal Kelkar"
 tags:
 - Functional Programming
-readingTime: 6
 ---
 Tail recursion is one of those functional programming concepts that are likely to be unknown to someone coming from a Java background, like me. I encountered this term while skimming through the first few pages of [SICP](https://mitpress.mit.edu/sicp/full-text/book/book.html). After some quick R&D (i.e. googling), the following is a summary of what I have learnt.
 

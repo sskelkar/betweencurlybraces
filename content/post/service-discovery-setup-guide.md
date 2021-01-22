@@ -1,12 +1,9 @@
 ---
 title: "Step by step guide to set up a service discovery environment"
 date: 2015-12-17T00:00:00+05:30
-draft: false
-author: "Sojjwal Kelkar"
 tags:
 - Java
 - Microservices
-readingTime: 12
 ---
 In a microservices environment we can run multiple instances of a service for resilience and scalability. 
 In a cloud environment these instances can go up and down arbitrarily.
@@ -123,7 +120,7 @@ public class DemoClientController {
 
 Note that Spring will automatically inject an implementation for `DemoServerClient` interface.
 
-f. Hit http://localhost:8111/hello?name=World from your browser and it will print “Hello World”.
+f. Hit [http://localhost:8111/hello?name=World](http://localhost:8111/hello?name=World) from your browser and it will print “Hello World”.
 
 > Important: Before trying the API from client service, make sure that both `demo-server` and `demo-client` are registered at the Eureka server.
 

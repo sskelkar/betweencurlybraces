@@ -1,11 +1,9 @@
 ---
 title: "In case of any query, revert back to me"
 date: 2016-08-01T00:00:00+05:30
-draft: false
-author: "Sojjwal Kelkar"
+type: "post"
 tags:
 - Cartoons
-readingTime: 1
 ---
 If you have ever worked in an office in India, you would have encountered the phrase "revert back" at the end of official emails. 
 When people ask you to “revert back”, they are actually asking you to "reply back". 
@@ -15,5 +13,4 @@ Of course languages are used differently in different parts of the world. But I 
 
 And yes, I used MS Paint because I don’t actually know how to draw :-(.
 
-
-{{< imgAbs pathURL="post/images/xmen3.png" >}}
+![revert-back](/img/xmen3.png)

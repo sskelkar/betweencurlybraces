@@ -1,12 +1,9 @@
 ---
 title: "Closures in JavaScript"
 date: 2015-07-20T00:00:00+05:30
-draft: false
-author: Sojjwal Kelkar
 tags:
 - JavaScript
 - Functional Programming
-readingTime: 4
 ---
 
 A good understanding of closures is a must-have skill for any JavaScript programmer. So let's take a look at how they work with two simple examples.

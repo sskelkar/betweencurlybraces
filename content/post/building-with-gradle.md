@@ -5,7 +5,6 @@ draft: false
 author: "Sojjwal Kelkar"
 tags:
 - Java
-readingTime: 10
 ---
 
 Gradle is a popular build tool to manage Java projects. Gradle’s build scripts are written in Groovy. The design of Gradle is aimed to be used as a language, not as a rigid framework. In this article, I want to give some basic idea about what a Gradle build script is composed of and some of the features provided by Gradle.

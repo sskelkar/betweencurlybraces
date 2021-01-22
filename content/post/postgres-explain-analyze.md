@@ -1,11 +1,8 @@
 ---
 title: "Understanding a Postgres query plan"
 date: 2020-04-13T00:00:00+05:30
-draft: false
-author: "Sojjwal Kelkar"
 tags:
 - Database
-readingTime: 15
 ---
 A query plan is a sequence of steps used by a database to access data. Being able to read a query plan is key to understanding the performance of an SQL query. While tuning a query we need to know how the rows are being fetched from the tables? Are the indexes being used? What is the cost of joining to tables? A query plan provides with an answer for all of these questions.
 
@@ -25,9 +22,9 @@ A database can employ various algorithms to fetch rows and join tables. So a que
 
 But first, we need to understand the structure of a query plan. From the [official documentation](https://www.postgresql.org/docs/12/using-explain.html):
 
-{{<blockquote>}}
-The structure of a query plan is a tree of plan nodes. Nodes at the bottom level of the tree are scan nodes: they return raw rows from a table. There are different types of scan nodes for different table access methods: sequential scans, index scans, and bitmap index scans. [...] If the query requires joining, aggregation, sorting, or other operations on the raw rows, then there will be additional nodes above the scan nodes to perform these operations. Again, there is usually more than one possible way to do these operations, so different node types can appear here too. The output of EXPLAIN has one line for each node in the plan tree, showing the basic node type plus the cost estimates that the planner made for the execution of that plan node. [...] The very first line (the summary line for the topmost node) has the estimated total execution cost for the plan; it is this number that the planner seeks to minimize.
-{{</blockquote>}}
+
+> The structure of a query plan is a tree of plan nodes. Nodes at the bottom level of the tree are scan nodes: they return raw rows from a table. There are different types of scan nodes for different table access methods: sequential scans, index scans, and bitmap index scans. [...] If the query requires joining, aggregation, sorting, or other operations on the raw rows, then there will be additional nodes above the scan nodes to perform these operations. Again, there is usually more than one possible way to do these operations, so different node types can appear here too. The output of EXPLAIN has one line for each node in the plan tree, showing the basic node type plus the cost estimates that the planner made for the execution of that plan node. [...] The very first line (the summary line for the topmost node) has the estimated total execution cost for the plan; it is this number that the planner seeks to minimize.
+
 
 Let's break this down in simple terms. A query plan is structured as a tree. Each branch of this tree is called a 'plan node'. In the query plan, each of these nodes begin with an `->` arrow. The nodes at the lowest level correspond to how rows are fetched from a table. Each node on a higher level performs some operation on its child nodes. For example, if we have a query as following: `select count(*) from students where age > 10 and mentor_id = 1`. One of the possible ways this query can be processed is to fetch a set of all students whose age is greater than 10. Fetch another set of students whose mentor_id is 1. Then an AND operation is performed on both sets to get the final result. In this case, the query plan will have two bottom level nodes and with a parent node for the AND operation. There can be higher level nodes for any type of operations, like SORT, LIMIT, JOIN etc. that can be performed on raw rows.
 

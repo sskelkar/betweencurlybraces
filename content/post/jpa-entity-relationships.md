@@ -1,12 +1,10 @@
 ---
 title: "JPA Entity Relationships"
 date: 2016-01-15T00:00:00+05:30
-draft: false
-author: "Sojjwal Kelkar"
 tags:
 - Java
 - Spring
-readingTime: 6
+- Database
 ---
 
 In a relational database, the relationships between two tables are defined by foreign keys. Typically, one table has a column that contains the primary key of another table’s row. In JPA, we deal with entity objects that are Java representations of database tables. So we need a different way for establishing relationship between two entities. JPA entity relationships define how these entities refer to each other.

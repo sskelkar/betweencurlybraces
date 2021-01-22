@@ -1,11 +1,8 @@
 ---
 title: "The small pleasures of programming"
 date: 2018-09-23T00:00:00+05:30
-draft: false
-author: "Sojjwal Kelkar"
 tags:
 - Coding is fun
-readingTime: 3
 ---
 It’s not just pulling off a complex engineering feat that makes programmers love their jobs. There are small pleasures to be had even in your day to day tasks, if you look for them.
 

@@ -1,8 +1,6 @@
 ---
 title: "Database integration tests for a Spring application"
 date: 2019-01-12T00:00:00+05:30
-draft: false
-author: "Sojjwal Kelkar"
 tags:
 - Java
 - Spring

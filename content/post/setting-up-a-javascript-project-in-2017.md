@@ -1,12 +1,9 @@
 ---
 title: "Setting up a JavaScript project in 2017"
 date: 2017-01-14T00:00:00+05:30
-draft: false
-author: "Sojjwal Kelkar"
 tags:
 - JavaScript
 - Unit Testing
-readingTime: 15
 ---
 ## 
 Creating a front-end JavaScript project can be a daunting task due to the sheer volume of choices available while deciding the tech stack. First, you need to decide the JavaScript framework or library for your project. Do you plan to use the latest ES2015 language features in your code? If yes, then you need a transpiler because your browser probably doesn’t support them yet. Then you require a bundling tool to get your code loaded in the browser. You may want to minify the code for faster load time. To automate all these steps, you need a build script. You may want to deploy your project on a local web server during development. Some setup is required for that. Finally, you need to include some testing framework in your project to write unit tests.

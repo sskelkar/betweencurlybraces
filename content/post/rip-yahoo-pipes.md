@@ -1,11 +1,8 @@
 ---
 title: "RIP Yahoo! Pipes"
 date: 2015-07-23T00:00:00+05:30
-draft: false
-author: "Sojjwal Kelkar"
 tags:
 - Coding is fun
-readingTime: 2
 ---
 Yahoo has announced it will shut down its web mashup application Pipes on September of this year. Pipes was a pretty useful application to combine web feeds from multiple sources. With an easy to use GUI, you could add filters, modify the fields present in a feed and render the Pipe in RSS, JSON or Atom formats. So you could subscribe to a Pipe just like you would subscribe to any web feed.
 

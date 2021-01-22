@@ -1,12 +1,9 @@
 ---
 title: "How to set up a local spring cloud config server"
 date: 2015-12-15T00:00:00+05:30
-draft: false
-author: "Sojjwal Kelkar"
 tags:
 - Java
 - Microservices
-readingTime: 10
 ---
 From the [official documentation](https://spring.io/projects/spring-cloud-config),
 

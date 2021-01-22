@@ -60,5 +60,5 @@ There is a third advice to log the exceptions thrown my any method belonging to 
 
 Here’s a screenshot of the logs on running this application:
 
-{{< imgAbs pathURL="post/images/spring-aop-1.png" >}}
+![spring aop](/img/spring-aop-1.png)
 

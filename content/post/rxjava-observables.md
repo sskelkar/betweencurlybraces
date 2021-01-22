@@ -1,11 +1,8 @@
 ---
 title: "Running time intensive operations in parallel with RxJava Observables"
 date: 2016-09-01T00:00:00+05:30
-draft: false
-author: "Sojjwal Kelkar"
 tags:
 - Java
-readingTime: 6
 ---
 Recently I delved into the [RxJava](https://github.com/ReactiveX/RxJava) library. In this post I will demonstrate how RxJava Observables can be used to execute two long running tasks in parallel, so as to reduce their overall execution time.
 
