@@ -3,6 +3,7 @@ title: "Understanding a Postgres query plan"
 date: 2020-04-13T00:00:00+05:30
 tags:
 - Database
+bigimg: [{src: "/img/library.jpg", desc: "Path"}]
 ---
 A query plan is a sequence of steps used by a database to access data. Being able to read a query plan is key to understanding the performance of an SQL query. While tuning a query we need to know how the rows are being fetched from the tables? Are the indexes being used? What is the cost of joining to tables? A query plan provides with an answer for all of these questions.
 
