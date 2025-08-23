@@ -1,26 +1,31 @@
 # betweencurlybraces
 
-### Commands
+This repository contains the source code for Sojjwal Kelkar's personal blog, built with Hugo.
 
-* `brew install hugo`
-* `hugo new posts/my-first-post.md`
-* `hugo server -D`
-* `./deploy.sh` (To build the project and deploy to [sskelkar.github.io](https://github.com/sskelkar/sskelkar.github.io))
+## Quick Start
 
+### Prerequisites
+*   [Hugo](https://gohugo.io/installation/) (extended version recommended)
+*   Git
 
-### Minimal theme
-* The [minimal-bootstrap-hugo-theme](https://github.com/zwbetz-gh/minimal-bootstrap-hugo-theme/tree/master/layouts) provides a default layout.
-* This can be overwritten if you want to add more content/bells/whistles on top of the default layout.
-* This is done by copying all relevant pages from the theme's layouts folder to the blog repo's layouts folder.
-* Eg: post-list.html has been modified to display reading time while listing all the blog posts.
-* If pages aren't rendering as expected, perhaps the code in the theme has changed. Again copy the theme layout code and apply your custom changes on top of it.
-* `git submodule update --remote --merge` to get fresh pull of theme
+### Development Commands
+*   `brew install hugo`: Install Hugo on macOS.
+*   `hugo new posts/my-first-post.md`: Create a new blog post markdown file.
+*   `hugo server -D`: Run the local development server, including draft content.
+*   `./deploy.sh`: Build the project and deploy to [sskelkar.github.io](https://github.com/sskelkar/sskelkar.github.io). Ensure your SSH keys are set up for seamless deployment.
 
-### How it works
-* GitHub Pages serves the blog from the [this repo](https://github.com/sskelkar/sskelkar.github.io) from the branch specified in the repo's Settings.
-* When you clone this repo and build the blog using `hugo` command, the resources are generated in the 'public' folder.
-* This public folder should point to the above repo that is used to serve the GitHub Pages.
-* This can be done by adding that repo as a submodule of this repo. `git submodule add --force -b master git@github.com:sskelkar/sskelkar.github.io.git public`. 
-* With the above command the public folder of this repo points to the master branch of that repo.
-* When you run the `./deploy.sh` command, it builds the hugo site. Then it goes into the public directory and commits the changes to the GitHub Pages repo. 
-* If during `git push` it asks for credentials, use the github personal access token instead of the github password. 
+## Theme Customization
+
+*   This project uses the [beautifulhugo](https://github.com/halogenica/beautifulhugo) theme as its base.
+*   To override default theme layouts or add custom content, copy the relevant pages from the theme's `layouts` folder to the blog repo's `layouts` folder.
+*   **Example:** `post-list.html` has been modified to display reading time while listing all the blog posts.
+*   If pages aren't rendering as expected after a theme update, copy the latest theme layout code and re-apply your custom changes on top of it.
+*   `git submodule update --remote --merge`: Use this command to update the theme to its latest version.
+
+## How It Works
+
+*   GitHub Pages serves the blog from the [sskelkar/sskelkar.github.io](https://github.com/sskelkar/sskelkar.github.io) repository from the branch specified in that repo's Settings.
+*   When you build the blog using the `hugo` command, the generated static resources are placed in the `public` folder.
+*   The `public` folder in this repository is configured as a Git submodule, pointing to the `master` branch of the `sskelkar/sskelkar.github.io` repository. This is set up using:
+    `git submodule add --force -b master git@github.com:sskelkar/sskelkar.github.io.git public`
+*   The `./deploy.sh` command automates the build process, commits changes within the `public` submodule, pushes them to the GitHub Pages repository, and then updates the `public` submodule pointer in this main repository.
