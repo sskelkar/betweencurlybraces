@@ -9,9 +9,9 @@ It’s not just pulling off a complex engineering feat that makes programmers lo
 Seasoned programmers know the thrill of recognising the possibility to introduce an abstraction over duplication. 
 A task as simple as renaming a variable can be the difference between obscurantism and lucidity. 
 It’s the boy scout principle in action. Making your code a bit more pleasant to revisit. 
-The joy one derives in these simple improvements is akin to [Amelie](https://en.wikipedia.org/wiki/Am%C3%A9lie)’s _les petits plaisirs_.
+The joy one derives in these simple improvements is akin to [Amélie](https://en.wikipedia.org/wiki/Am%C3%A9lie)’s _les petits plaisirs_.
 
-![](https://thumbs.gfycat.com/AssuredGranularKestrel-small.gif)
+![](/img/amelie-grain-hand-plunge.gif)
 
 Recently, while working on some code I came across following conditional statement:
 
