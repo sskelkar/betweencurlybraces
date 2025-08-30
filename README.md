@@ -12,7 +12,7 @@ This repository contains the source code for Sojjwal Kelkar's personal blog, bui
 *   `brew install hugo`: Install Hugo on macOS.
 *   `hugo new posts/my-first-post.md`: Create a new blog post markdown file.
 *   `hugo server -D`: Run the local development server, including draft content.
-*   `./deploy.sh`: Build the project and deploy to [sskelkar.github.io](https://github.com/sskelkar/sskelkar.github.io). Ensure your SSH keys are set up for seamless deployment.
+*   `./deploy.sh`: Build the project and deploy to [sskelkar.github.io](https://github.com/sskelkar/sskelkar.github.io). This script builds the Hugo site, commits the changes in the `public` directory, and pushes them to the `master` branch of the `sskelkar/sskelkar.github.io` repository. It does not commit or push any changes to the main `betweencurlybraces` repository.
 
 ## Theme Customization
 
