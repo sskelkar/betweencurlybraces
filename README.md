@@ -29,3 +29,21 @@ This repository contains the source code for Sojjwal Kelkar's personal blog, bui
 *   The `public` folder in this repository is configured as a Git submodule, pointing to the `master` branch of the `sskelkar/sskelkar.github.io` repository. This is set up using:
     `git submodule add --force -b master git@github.com:sskelkar/sskelkar.github.io.git public`
 *   The `./deploy.sh` command automates the build process, commits changes within the `public` submodule, pushes them to the GitHub Pages repository, and then updates the `public` submodule pointer in this main repository.
+
+## Workflow for creating/updating a blog post
+
+1.  **Create a new branch:**
+    `git checkout -b <branch-name>`
+2.  **Create a new post:**
+    `hugo new post/<post-name>.md`
+3.  **Write the blog post.**
+4.  **Run the local server to preview the changes:**
+    `hugo server -D`
+5.  **If satisfied, run the deploy script:**
+    `./deploy.sh`
+6.  **Commit the file and the public submodule:**
+    `git add .`
+    `git commit -m "Add new post"`
+7.  **Push the changes to the remote repository:**
+    `git push origin <branch-name>`
+8.  **Create a pull request** and merge it into the `master` branch.
