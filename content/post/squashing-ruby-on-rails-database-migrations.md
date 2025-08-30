@@ -7,7 +7,7 @@ tags:
 - Ruby on Rails
 ---
 
-## Why do it?
+## Why?
 
 There are several reasons why you'd want to squash the database migrations in your Ruby on Rails application:
 
@@ -28,7 +28,7 @@ There are several reasons why you'd want to squash the database migrations in yo
 4. The previous point also applies to any problems due to not following the best practices while creating migrations (eg. incorrectly using
    a model class in the migration). In all of such cases, we can squash the migrations and get a clean slate.
 
-## What to do?
+## What?
 
 The purpose of migrations is to incrementally evolve an existing database. When setting up a new environment, they can create
 a new database with the desired schema and settings suitable for our application.
@@ -45,7 +45,7 @@ There are two important things to consider when creating the squashed migration:
 2. You would need to run the squashed migration on the existing databases as well. Doing this on an existing
    database should have absolutely no effect. For example, the squashed migration should not accidentally recreate a production table.
 
-## How to do it?
+## How?
 
 Rails maintains a schema file (located in `db/schema.rb`) that represents the current state of the database. Every time a migration runs,
 this file gets automatically updated to incorporate the changes introduced by that migration.
