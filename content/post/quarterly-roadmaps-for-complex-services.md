@@ -8,10 +8,10 @@ tags:
 ---
 
 Last year I transitioned to the role of engineering manager on a complex, legacy service with a poor reliability record. 
-As a first time manager it is quite a challenge to plan a roadmap that can balance tackling reliability issues and reducing technical debt on one hand, and building
+As a first-time manager I found it challenging to plan a roadmap that can balance tackling reliability issues and reducing technical debt on one hand, and building
 new features on the other.
 
-The developer time is a very precious resource. As a manager, you want to spend it in a way that produces compounding benefits over time. 
+Developer time is a very precious resource. As a manager, you want to spend it in a way that produces compounding benefits over time. 
 So I came up with some guiding principles to help me prioritize work in a way that keeps the system running, with hopefully fewer hiccups over time.   
 
 
@@ -22,24 +22,26 @@ Perhaps the team has gone through a [Ship of Theseus](https://en.wikipedia.org/w
 Now no one knows what is important and what should have been removed two years ago. It is of course scary to make changes in code that is 
 poorly understood, lest we inadvertently break something. 
 
-One of the biggest own-goals a team can make is to continue maintaining dead features. Trying not to break something, that shouldn't
-exist in the first place, incurs heavy cost: in terms of development effort and poor architecture decisions.   
+One of the biggest own-goals a team can make is to continue maintaining dead features. The effort spent trying not to break 
+something that shouldn't exist in the first place is a heavy cost, both in development time and in architectural compromises.   
 
 So the first step towards taming complexity is to actively seek simplicity.
 
-*   **Shed Deprecated Code:** If you already have a complex system at hand, try to get to the point where every line of code
+*   **Shed deprecated code:** If you already have a complex system at hand, try to get to the point where every line of code
 is known to serve some useful purpose. Question every piece of obscure code. Talk to your clients: how are they using the information they consume
 from your service. 
 In a large distributed system it is quite possible that service A does some expensive computation to produce a result that it thinks
-service B needs it. But service B had already sunset that feature, or moved to a different source.
+service B needs. But service B had already sunset that feature, or moved to a different source.
 So spend time identifying unnecessary code. Then delete, rinse, repeat. 
 * **Reverse engineer:** Sometimes no one seems to know what's the purpose of a feature, be it the team owning the feature, its clients or relevant
 stakeholders from the org. I'd go for deliberately breaking the feature in a controlled manner in a low risk environment, and perform chaos or A/B testing
 to find out whether it will be missed.
-*   **Re-evaluate the Data Model:** A service's data model should reflect its reality and scale. The choices made at the inception of a project may no longer apply
+*   **Re-evaluate the data model:** A service's data model should reflect its reality and scale. The choices made at the inception of a project may no longer apply
 years down the line. It may be necessary to denormalize parts of the database, or switch to a different technology to improve performance and reduce complexity.
-*   **Migrate Non-Core Responsibilities:** We all know SOLID, YAGNI, KISS etc. But 
-A legacy system often accumulates responsibilities that don't belong to it. Be constantly on the lookout for opportunities to migrate non-core functionalities to other, more appropriate services.
+*   **Migrate non-core responsibilities:** We all know SOLID, YAGNI, KISS etc. But reality hits and compromises are made.
+A legacy system often accumulates responsibilities that don't belong to it. Especially in a fast-paced environment, non-ideal choices 
+have to be made to deliver features quickly. But when the dust settles, be on the lookout for opportunities to migrate non-core functionalities 
+to other, more appropriate services.
 
 ### Always Be Migrating
 
@@ -60,20 +62,33 @@ automatically upgraded some of our databases. Because the upgrade wasn't planned
 
 ### Avoid Knowledge Silos
 
-Sometimes a component is so mature and stable that there is no need to make any modifications on it. Consequently, the team's knowledge of how it works can fade over time
-because there has been no need to visit that part of the codebase. 
+Sometimes a component is so mature and stable that there is no need to make any modifications to it. 
+Consequently, the team's knowledge of how it works can fade over time because there has been no need to visit that part of the codebase. 
 This creates a significant risk. To combat this, a few practices can be implemented:
 
-*   **Rotate Maintenance and Upgrade Tasks:** Letting each team member take turns to own such tasks ensures that they all 
-have at least a basic competency with every aspect of the service. The same applies to other initiatives and features.
-*   **Build Gameday Scenarios:** Regularly conduct "Gameday" exercises, simulating failures in obscure parts of the system. 
-This helps build confidence in the team's ability to handle real-world incidents.
+*   **Rotate tasks:** Letting each team member take turns to own maintenance or upgrade tasks ensures that they all 
+have at least a basic competency with every aspect of the service. The same applies to big initiatives and features.
+*   **Build gameday scenarios:** Regularly conduct "Gameday" exercises, simulating failures in obscure parts of the system. 
+This would force the team to explore the part of the code they had not visited before. Debugging issues in a code is probably
+the second best way to grok how it works, than writing it.
 
 ### Improve Observability
 
-Often, monitoring for legacy systems is based on arbitrary system-level metrics like dead tuple counts in a database. This can lead to alerts that don't correlate with any actual customer impact. A deliberate shift to a more customer-centric approach to observability is required.
+In a continuously evolving system, you are never really fully done implementing the best possible observability. There is always
+something you can do to further reduce the mean time to detect (MTTD). You might have built a new endpoint or introduced a new class
+that needs to be covered with monitoring. Or you need to apply the lessons learned from the root cause anslyses of previous incidents. 
 
-*   **Define SLOs for all User Flows:** Start by defining Service Level Objectives (SLOs) for all critical user flows. This forces a discussion about what a good customer experience looks like in measurable terms.
-*   **Alert on Burn Rate:** Instead of alerting on noisy, low-level metrics, alert on the burn rate of the SLOs. This ensures that teams are only paged when there is a real and sustained impact on customers.
+Even if you think everything is covered, you can iterate upon it and monitor a new signal that help you detect issues faster.
 
-Managing a legacy system is a marathon, not a sprint. The principles outlined here are not a silver bullet, but they provide a framework for making steady, incremental progress. By embracing simplicity, continuous migration, knowledge sharing, and meaningful observability, any team can turn an unreliable legacy system into a stable and evolving product to be proud of.
+Sometimes, monitoring for legacy systems is based on arbitrary system-level metrics. (For us, it was dead tuple counts in a database.) 
+This can lead to alerts that don't correlate with any actual customer impact. 
+A deliberate shift to a more customer-centric approach to observability is required.
+
+*   **Define SLOs for all user flows:** Start by defining Service Level Objectives (SLOs) for all critical user flows. 
+This forces a discussion about what a good customer experience looks like in measurable terms.
+*   **Alert on burn rate:** Instead of alerting on noisy, low-level metrics, alert on the burn rate of the SLOs. 
+This ensures that teams are only paged when there is a real and sustained impact on customers.
+
+Managing a legacy system is a marathon, not a sprint. The principles outlined here are not a silver bullet, 
+but they provide a framework for making steady, incremental progress. By embracing simplicity, continuous migration, 
+knowledge sharing, and meaningful observability, any team can turn an unreliable legacy system into a stable and evolving product to be proud of.
