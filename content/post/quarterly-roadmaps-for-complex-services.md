@@ -1,5 +1,5 @@
 ---
-title: "Keeping the Lights On: A Manager's Guide to Legacy Services"
+title: "A Manager's Guide to Keeping the Lights On"
 date: 2025-09-07T00:00:00+05:30
 draft: false
 author: "Sojjwal Kelkar"
@@ -62,23 +62,26 @@ automatically upgraded some of our databases. Because the upgrade wasn't planned
 
 ### Avoid Knowledge Silos
 
-Sometimes a component is so mature and stable that there is no need to make any modifications to it. 
+In a critical service, where any outage can have potentially costly business impact, it is important that everyone in the team
+has a basic understanding of every aspect of the system. After all, it is not nice paging people for support when they're on vacation :).
+
+Also, sometimes a component is so mature and stable that there is no need to make any modifications to it. 
 Consequently, the team's knowledge of how it works can fade over time because there has been no need to visit that part of the codebase. 
 This creates a significant risk. To combat this, a few practices can be implemented:
 
 *   **Rotate tasks:** Letting each team member take turns to own maintenance or upgrade tasks ensures that they all 
 have at least a basic competency with every aspect of the service. The same applies to big initiatives and features.
 *   **Build gameday scenarios:** Regularly conduct "Gameday" exercises, simulating failures in obscure parts of the system. 
-This would force the team to explore the part of the code they had not visited before. Debugging issues in a code is probably
-the second best way to grok how it works, than writing it.
+This would force the team to explore the part of the code they had not visited before. Debugging issues in code is probably 
+the second-best way to understand how it works, second only to writing it.
 
 ### Improve Observability
 
 In a continuously evolving system, you are never really fully done implementing the best possible observability. There is always
 something you can do to further reduce the mean time to detect (MTTD). You might have built a new endpoint or introduced a new class
-that needs to be covered with monitoring. Or you need to apply the lessons learned from the root cause anslyses of previous incidents. 
+that needs to be covered with monitoring. Or you need to apply the lessons learned from the root cause analyses of previous incidents. 
 
-Even if you think everything is covered, you can iterate upon it and monitor a new signal that help you detect issues faster.
+Even if you think everything is covered, you can iterate upon it and monitor a new signal that helps you detect issues faster.
 
 Sometimes, monitoring for legacy systems is based on arbitrary system-level metrics. (For us, it was dead tuple counts in a database.) 
 This can lead to alerts that don't correlate with any actual customer impact. 
@@ -90,5 +93,4 @@ This forces a discussion about what a good customer experience looks like in mea
 This ensures that teams are only paged when there is a real and sustained impact on customers.
 
 Managing a legacy system is a marathon, not a sprint. The principles outlined here are not a silver bullet, 
-but they provide a framework for making steady, incremental progress. By embracing simplicity, continuous migration, 
-knowledge sharing, and meaningful observability, any team can turn an unreliable legacy system into a stable and evolving product to be proud of.
+but they provide a framework for making steady, incremental progress. 
