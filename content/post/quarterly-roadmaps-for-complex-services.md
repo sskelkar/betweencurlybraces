@@ -12,31 +12,51 @@ As a first time manager it is quite a challenge to plan a roadmap that can balan
 new features on the other.
 
 The developer time is a very precious resource. As a manager, you want to spend it in a way that produces compounding benefits over time. 
-So I came up with some guiding principles to help me prioritize the right tasks to keep the system running, with hopefully less hiccups over time.   
+So I came up with some guiding principles to help me prioritize work in a way that keeps the system running, with hopefully fewer hiccups over time.   
 
 
 ### Strive for Simplicity
 
 A core reason for a legacy service's complexity is that it has accumulated features and code over many years. The cognitive load of understanding such code is too high.
-Perhaps the team has gone through a ship of Theseus style turnover. So no one knows what is important and what should have been removed two years ago.  
-One of the biggest own-goals a team can make is to continue maintaining dead features. So the first step towards taming complexity is to actively seek simplicity.
+Perhaps the team has gone through a [Ship of Theseus](https://en.wikipedia.org/wiki/Ship_of_Theseus)-style turnover. 
+Now no one knows what is important and what should have been removed two years ago. It is of course scary to make changes in code that is 
+poorly understood, lest we inadvertently break something. 
 
-*   **Shed Deprecated Code:** Legacy systems are often burdened with deprecated code.   
+One of the biggest own-goals a team can make is to continue maintaining dead features. Trying not to break something, that shouldn't
+exist in the first place, incurs heavy cost: in terms of development effort and poor architecture decisions.   
+
+So the first step towards taming complexity is to actively seek simplicity.
+
+*   **Shed Deprecated Code:** If you already have a complex system at hand, try to get to the point where every line of code
+is known to serve some useful purpose. Question every piece of obscure code. Talk to your clients: how are they using the information they consume
+from your service. 
+In a large distributed system it is quite possible that service A does some expensive computation to produce a result that it thinks
+service B needs it. But service B had already sunset that feature, or moved to a different source.
+So spend time identifying unnecessary code. Then delete, rinse, repeat. 
+* **Reverse engineer:** Sometimes no one seems to know what's the purpose of a feature, be it the team owning the feature, its clients or relevant
+stakeholders from the org. I'd go for deliberately breaking the feature in a controlled manner in a low risk environment, and perform chaos or A/B testing
+to find out whether it will be missed.
 *   **Re-evaluate the Data Model:** A service's data model should reflect its reality and scale. The choices made at the inception of a project may no longer apply
 years down the line. It may be necessary to denormalize parts of the database, or switch to a different technology to improve performance and reduce complexity.
 *   **Migrate Non-Core Responsibilities:** We all know SOLID, YAGNI, KISS etc. But 
-A legacy system often accretes responsibilities that don't belong to it. Be constantly on the lookout for opportunities to migrate non-core functionalities to other, more appropriate services.
+A legacy system often accumulates responsibilities that don't belong to it. Be constantly on the lookout for opportunities to migrate non-core functionalities to other, more appropriate services.
 
-### Always Be Migrating (Stability ≠ Immobility)
+### Always Be Migrating
 
-One of the biggest fallacies when dealing with a legacy system is to equate stability with immobility. 
-Your service is a living system that is continuously accumulating code, tech debt, and features. To keep it healthy, you must always be migrating - to newer library versions,
-to technologies that make sense in the present. 
+Your service is a living system that is continuously piling up code, tech debt, and features. To keep it healthy, you must always be migrating: to newer library versions,
+to technologies that make sense in the present.  
 
-*   **Stay Current with Dependencies:** Is the service using the latest version of its database? Are its libraries up-to-date? 
+Is the service using the latest version of its database? Are its libraries up-to-date? Stability does not mean immobility. 
 Newer versions often come with significant performance improvements and security patches. There may be new features in the latest version of your framework that you aren't aware of.
-But using them may improve your API latency or reduce your operational cost. Check if your cloud provider is recommending any version upgrades. 
-*   **Address Security Vulnerabilities:** Your external libraries can have security vulnerabilities. Staying on top of these and patching them is critical for any service, but especially for one that is business-critical.
+But using them may improve your API latency or reduce your operational cost. 
+
+Check if your cloud provider is recommending any version upgrades. A resource that has reached the end of standard support may cost much more on extended support.
+
+Sometimes cloud providers may perform mandatory upgrades to apply security patches. We learned this the hard way when AWS 
+automatically upgraded some of our databases. Because the upgrade wasn't planned, it broke some dependencies causing production outage.
+
+
+
 
 ### Avoid Knowledge Silos
 
@@ -44,8 +64,10 @@ Sometimes a component is so mature and stable that there is no need to make any 
 because there has been no need to visit that part of the codebase. 
 This creates a significant risk. To combat this, a few practices can be implemented:
 
-*   **Rotate Maintenance and Upgrade Tasks:** Rotate ownership of maintenance and upgrade tasks to ensure that every member of the team has at least a basic competency with every aspect of the service.
-*   **Build Gameday Scenarios:** Regularly conduct "Gameday" exercises, simulating failures in obscure parts of the system. This helps build confidence in the team's ability to handle real-world incidents.
+*   **Rotate Maintenance and Upgrade Tasks:** Letting each team member take turns to own such tasks ensures that they all 
+have at least a basic competency with every aspect of the service. The same applies to other initiatives and features.
+*   **Build Gameday Scenarios:** Regularly conduct "Gameday" exercises, simulating failures in obscure parts of the system. 
+This helps build confidence in the team's ability to handle real-world incidents.
 
 ### Improve Observability
 
