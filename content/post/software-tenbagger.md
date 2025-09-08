@@ -1,6 +1,6 @@
 ---
 title: "Software tenbagger"
-date: 2025-05-12T21:02:00+02:00
+date: 2025-08-24T21:02:00+02:00
 draft: false
 tags:
 - Coding is fun
