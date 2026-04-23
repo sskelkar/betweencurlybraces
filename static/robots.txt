@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sskelkar.github.io/sitemap.xml
