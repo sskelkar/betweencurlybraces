@@ -508,18 +508,25 @@ footer .theme-by {
   margin-bottom: 30px;
 }
 
+.post-meta .meta-separator {
+  margin: 0 5px;
+  visibility: hidden;
+  width: 0;
+  font-size: 0;
+}
+
 .post-meta .blog-tags {
   display: inline;
   margin-bottom: 0;
-  margin-left: 10px;
+  margin-left: 0;
   font-family: inherit;
   font-size: inherit;
   font-style: inherit;
 }
 
 .post-meta .blog-tags:before {
-  content: "| ";
-  margin-right: 5px;
+  content: "";
+  margin: 0 6px;
 }
 
 .post-meta .blog-tags a {
@@ -541,7 +548,7 @@ footer .theme-by {
 .blog-tags a {
   color: #008AFF;
   text-decoration: none;
-  padding: 0px 5px;
+  padding: 0 2px;
 }
 
 .blog-tags a:before {
@@ -549,9 +556,8 @@ footer .theme-by {
 }
 
 .blog-tags a:hover {
-  border-radius: 2px;
-  color: #008AFF;
-  background-color: #CCC;
+  color: #0085a1;
+  background-color: transparent;
 }
 
 .post-preview .blog-tags {

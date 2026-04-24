@@ -35,9 +35,35 @@ author: "Sojjwal Kelkar"
 
 *   This project uses the [beautifulhugo](https://github.com/halogenica/beautifulhugo) theme as its base.
 *   To override default theme layouts or add custom content, copy the relevant pages from the theme's `layouts` folder to the blog repo's `layouts` folder.
-*   **Example:** `post-list.html` has been modified to display reading time while listing all the blog posts.
-*   If pages aren't rendering as expected after a theme update, copy the latest theme layout code and re-apply your custom changes on top of it.
 *   `git submodule update --remote --merge`: Use this command to update the theme to its latest version.
+
+### Custom Overrides
+
+The following files have been customized to override theme defaults:
+
+**Layouts:**
+*   `layouts/partials/post_meta.html` - Modified to display tags alongside date and reading time in the header
+*   `layouts/partials/post_preview.html` - Customized post listing display with tags in metadata
+*   `layouts/partials/nav.html` - Simplified navigation (removed hamburger menu for mobile)
+*   `layouts/partials/header.html` - Custom header layout
+*   `layouts/_default/single.html` - Removed duplicate tag listing from bottom of posts
+*   `layouts/_default/terms.html` - Tags sorted alphabetically instead of by count
+
+**Styling:**
+*   `static/css/main.css` - Extensive custom styling including:
+  - Smaller heading font sizes (h1-h6)
+  - Professional sans-serif fonts for metadata (Open Sans)
+  - Cleaner tag styling with consistent spacing
+  - Mobile-optimized navigation
+  - Custom "Read more" link styling
+
+**Translations:**
+*   `i18n/en.yaml` - Modified text strings (removed "Posted on", "Tags:", updated "Read more")
+
+**Configuration:**
+*   `config.toml` - Simplified navigation menu (only About and Tags)
+
+If pages aren't rendering as expected after a theme update, copy the latest theme layout code and re-apply your custom changes on top of it.
 
 ## How It Works
 
