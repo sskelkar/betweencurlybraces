@@ -445,8 +445,19 @@ footer .theme-by {
   width: 192px;
 }
 .post-preview .post-read-more {
-  font-weight: 800;
+  font-weight: 400;
   float: right;
+  color: #999;
+  font-size: 16px;
+  font-style: normal;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.post-preview .post-read-more:hover {
+  color: #008AFF;
+  text-decoration: none;
 }
 
 @media only screen and (min-width: 768px) {
