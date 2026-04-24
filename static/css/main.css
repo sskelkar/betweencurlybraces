@@ -37,6 +37,24 @@ h1,h2,h3,h4,h5,h6 {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 800;
 }
+h1 {
+  font-size: 26px;
+}
+h2 {
+  font-size: 22px;
+}
+h3 {
+  font-size: 18px;
+}
+h4 {
+  font-size: 16px;
+}
+h5 {
+  font-size: 14px;
+}
+h6 {
+  font-size: 12px;
+}
 a {
   color: #008AFF;
 }
@@ -385,8 +403,10 @@ footer .theme-by {
 .post-heading .post-meta,
 .page-meta {
   color: #808080;
-  font-size: 18px;
-  font-style: italic;
+  font-size: 16px;
+  font-style: normal;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 400;
   margin: 0 0 10px;
 }
 .page-meta {
@@ -431,7 +451,7 @@ footer .theme-by {
 
 @media only screen and (min-width: 768px) {
   .post-preview .post-title {
-    font-size: 36px;
+    font-size: 30px;
   }
 }
 
@@ -444,8 +464,34 @@ footer .theme-by {
   margin-bottom: 30px;
 }
 
+.post-meta .blog-tags {
+  display: inline;
+  margin-bottom: 0;
+  margin-left: 10px;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+}
+
+.post-meta .blog-tags:before {
+  content: "| ";
+  margin-right: 5px;
+}
+
+.post-meta .blog-tags a {
+  color: #008AFF;
+  text-decoration: none;
+  font-family: inherit;
+  font-style: inherit;
+}
+
+.post-meta .blog-tags a:hover {
+  color: #0085a1;
+  text-decoration: underline;
+}
+
 .blog-tags:before {
-  content: "Tags: ";
+  content: "";
 }
 
 .blog-tags a {
@@ -587,10 +633,10 @@ footer .theme-by {
   .intro-header .page-heading h1,
   .intro-header .tags-heading h1,
   .intro-header .categories-heading h1 {
-    font-size: 80px;
+    font-size: 50px;
   }
   .intro-header .post-heading h1 {
-    font-size: 50px;
+    font-size: 35px;
   }
   .intro-header.big-img .img-desc {
     font-size: 14px;
