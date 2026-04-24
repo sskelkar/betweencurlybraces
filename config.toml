@@ -52,24 +52,14 @@ pygmentsCodefencesGuessSyntax = true
   #stackoverflow = "users/XXXXXXX/username"
 
 [[menu.main]]
-    name = "Tech Blog"
-    url = ""
-    weight = 1
-
-[[menu.main]]
-    name = "Cartoons"
-    url = "cartoons"
-    weight = 2
-
-[[menu.main]]
     name = "About"
     url = "about"
-    weight = 3
+    weight = 1
 
 [[menu.main]]
     name = "Tags"
     url = "tags"
-    weight = 5
+    weight = 2
 
 
 
