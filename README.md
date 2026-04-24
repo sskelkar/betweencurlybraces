@@ -2,6 +2,8 @@
 
 This repository contains the source code for Sojjwal Kelkar's personal blog, built with Hugo.
 
+**Live site:** https://sskelkar.github.io/
+
 ## Quick Start
 
 ### Prerequisites

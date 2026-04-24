@@ -3,7 +3,6 @@ title: "Dependency Injection in AngularJS 1.x"
 date: 2015-07-19T00:00:00+05:30
 tags:
 - JavaScript
-- Angular
 readingTime: 5
 ---
 

@@ -32,6 +32,13 @@ pygmentsCodefencesGuessSyntax = true
   hideAuthor = true
 #  gcse = "012345678901234567890:abcdefghijk" # Get your code from google.com/cse. Make sure to go to "Look and Feel" and change Layout to "Full Width" and Theme to "Classic"
 
+[Params.Author]
+  name = "Sojjwal Kelkar"
+  email = "sojjwalkelkar@gmail.com"
+  github = "sskelkar"
+  linkedin = "sskelkar"
+  #stackoverflow = "users/XXXXXXX/username"
+
 #[[Params.bigimg]]
 #  src = "img/triangle.jpg"
 #  desc = "Triangle"

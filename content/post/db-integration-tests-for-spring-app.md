@@ -3,8 +3,6 @@ title: "Database integration tests for a Spring application"
 date: 2019-01-12T00:00:00+05:30
 tags:
 - Java
-- Spring
-- Unit Testing
 readingTime: 18
 ---
 Suppose you are tasked with writing tests for a Spring and Hibernate application. This application uses a mix of native queries, HQL or entity associations to fetch data from the database. If you choose to mock the DAO or entity layers, you leave a significant portion of the code untested. In such cases data integration tests can provide the most correct feedback. But you do you configure your application to run integration tests?
