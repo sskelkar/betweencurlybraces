@@ -4,7 +4,7 @@ date: 2025-09-07T00:00:00+05:30
 draft: false
 author: "Sojjwal Kelkar"
 tags:
-- Manager
+- Management
 ---
 
 Last year I transitioned to the role of engineering manager on a complex, legacy service with a poor reliability record. 

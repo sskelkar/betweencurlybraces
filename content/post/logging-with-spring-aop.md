@@ -5,7 +5,6 @@ draft: false
 author: "Sojjwal Kelkar"
 tags:
 - Java
-- Spring
 readingTime: 5
 ---
 Aspect oriented programming (AOP) is a way of separating the business login in your code from cross cutting concerns. What is a cross cutting concern?

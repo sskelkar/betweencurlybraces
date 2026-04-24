@@ -4,7 +4,8 @@ date: 2025-10-05T22:01:56+02:00
 draft: false
 tags:
   - Agentic Coding
-  - Coding is fun 
+  - Coding is fun
+  - Management
 ---
 
 Developers new to agentic coding are at risk of having the wrong expectations. When they try coding agents for the first time, it feels like magic.  But cracks appear when AI is used without understanding its limitations. People tend to dismiss agentic coding if it doesn't work "perfectly". This is unfortunate, as coding agents are in fact very impressive.   

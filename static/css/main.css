@@ -37,6 +37,24 @@ h1,h2,h3,h4,h5,h6 {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 800;
 }
+h1 {
+  font-size: 26px;
+}
+h2 {
+  font-size: 22px;
+}
+h3 {
+  font-size: 18px;
+}
+h4 {
+  font-size: 16px;
+}
+h5 {
+  font-size: 14px;
+}
+h6 {
+  font-size: 12px;
+}
 a {
   color: #008AFF;
 }
@@ -140,6 +158,33 @@ img {
   background: #F5F5F5;
   border-bottom: 1px solid #EAEAEA;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Always show navbar on mobile - no hamburger menu */
+.navbar-custom .navbar-collapse {
+  display: block !important;
+  height: auto !important;
+}
+
+.navbar-custom .navbar-header {
+  float: none;
+}
+
+@media only screen and (max-width: 767px) {
+  .navbar-custom .navbar-nav {
+    margin: 0;
+    float: right;
+  }
+
+  .navbar-custom .navbar-nav > li {
+    float: left;
+  }
+
+  .navbar-custom .container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .navbar-custom .nav li a {
@@ -385,8 +430,10 @@ footer .theme-by {
 .post-heading .post-meta,
 .page-meta {
   color: #808080;
-  font-size: 18px;
-  font-style: italic;
+  font-size: 16px;
+  font-style: normal;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 400;
   margin: 0 0 10px;
 }
 .page-meta {
@@ -409,6 +456,12 @@ footer .theme-by {
   width: 100%;
   margin-top: 10px;
 }
+
+@media only screen and (max-width: 767px) {
+  .post-entry {
+    margin-bottom: 15px;
+  }
+}
 .post-image {
   float: right;
   height: 192px;
@@ -425,13 +478,24 @@ footer .theme-by {
   width: 192px;
 }
 .post-preview .post-read-more {
-  font-weight: 800;
+  font-weight: 400;
   float: right;
+  color: #999;
+  font-size: 16px;
+  font-style: normal;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.post-preview .post-read-more:hover {
+  color: #008AFF;
+  text-decoration: none;
 }
 
 @media only screen and (min-width: 768px) {
   .post-preview .post-title {
-    font-size: 36px;
+    font-size: 30px;
   }
 }
 
@@ -444,14 +508,47 @@ footer .theme-by {
   margin-bottom: 30px;
 }
 
+.post-meta .meta-separator {
+  margin: 0 5px;
+  visibility: hidden;
+  width: 0;
+  font-size: 0;
+}
+
+.post-meta .blog-tags {
+  display: inline;
+  margin-bottom: 0;
+  margin-left: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+}
+
+.post-meta .blog-tags:before {
+  content: "";
+  margin: 0 6px;
+}
+
+.post-meta .blog-tags a {
+  color: #008AFF;
+  text-decoration: none;
+  font-family: inherit;
+  font-style: inherit;
+}
+
+.post-meta .blog-tags a:hover {
+  color: #0085a1;
+  text-decoration: underline;
+}
+
 .blog-tags:before {
-  content: "Tags: ";
+  content: "";
 }
 
 .blog-tags a {
   color: #008AFF;
   text-decoration: none;
-  padding: 0px 5px;
+  padding: 0 2px;
 }
 
 .blog-tags a:before {
@@ -459,9 +556,8 @@ footer .theme-by {
 }
 
 .blog-tags a:hover {
-  border-radius: 2px;
-  color: #008AFF;
-  background-color: #CCC;
+  color: #0085a1;
+  background-color: transparent;
 }
 
 .post-preview .blog-tags {
@@ -587,10 +683,10 @@ footer .theme-by {
   .intro-header .page-heading h1,
   .intro-header .tags-heading h1,
   .intro-header .categories-heading h1 {
-    font-size: 80px;
+    font-size: 50px;
   }
   .intro-header .post-heading h1 {
-    font-size: 50px;
+    font-size: 35px;
   }
   .intro-header.big-img .img-desc {
     font-size: 14px;
@@ -828,4 +924,48 @@ h4.see-also {
 /* --- About ---*/
 article.about {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.social-links {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  color: #404040;
+  text-decoration: none;
+  border: 1px solid #EAEAEA;
+  border-radius: 4px;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.social-link:hover {
+  color: #008AFF;
+  border-color: #008AFF;
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 138, 255, 0.2);
+}
+
+.social-link i {
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 767px) {
+  .social-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .social-link {
+    width: 100%;
+    justify-content: center;
+  }
 }

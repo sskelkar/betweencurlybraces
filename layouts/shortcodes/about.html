@@ -1,5 +1,18 @@
 <article class="post-preview">
     <img style="float:right;width:30%;padding-left:20px;padding-bottom:20px" alt="" src="/img/portrait.jpg"/>
     {{ .Inner | markdownify }}
+
+    <div class="social-links">
+        {{ with .Site.Params.Author.github }}
+        <a href="https://github.com/{{ . }}" target="_blank" rel="noopener" class="social-link">
+            <i class="fab fa-github"></i> GitHub
+        </a>
+        {{ end }}
+        {{ with .Site.Params.Author.linkedin }}
+        <a href="https://www.linkedin.com/in/{{ . }}" target="_blank" rel="noopener" class="social-link">
+            <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        {{ end }}
+    </div>
 </article>
 
