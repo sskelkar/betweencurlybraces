@@ -1,5 +1,5 @@
 ---
-title: "PRPs Capture Intention Like Never Before"
+title: "Well structured prompts capture intent like never before"
 date: 2025-09-10T00:00:00+05:30
 draft: false
 author: "Sojjwal Kelkar"
@@ -64,6 +64,7 @@ But developers might not have deemed it necessary to write a code comment, commi
 
 ## [Conclusion](#conclusion)
 
-Any kind of responsible coding requires extensive pre-planning. PRPs are just the AI version of the traditional PRD/RFC-driven processes. But PRPs do capture something traditionally lost in code reviews: the developer's thought process.
+Any kind of responsible coding requires extensive pre-planning. PRPs are just the AI version of the traditional PRD/RFC-driven processes. 
+But PRPs do capture something traditionally lost in code reviews: the developer's thought process.
 
 The AI landscape changes very quickly. It would be interesting to see how agentic coding practices like PRPs evolve.

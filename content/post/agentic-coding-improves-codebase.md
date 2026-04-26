@@ -1,5 +1,5 @@
 ---
-title: "Agentic coding improves your codebase. True story!"
+title: "Agentic coding improves your codebase"
 date: 2026-04-25T00:00:00+05:30
 draft: false
 author: "Sojjwal Kelkar"
@@ -7,7 +7,9 @@ tags:
 - Agentic Coding
 ---
 
-It is Q2 of 2026 and agentic coding is so thoroughly ingrained in our daily development process that life without it has started to become unimaginable. Don't we all sometimes wonder: How did people travel to another country before translation or navigation apps? How did people survive without emails and smartphones?  Pretty soon it's going to be: how did people write code before AI agents?
+It is Q2 of 2026 and agentic coding is so thoroughly ingrained in our daily development process that life without it has started to become unimaginable. 
+Don't we all sometimes wonder: How did people travel to another country before translation or navigation apps? 
+How did people survive without emails and smartphones?  Pretty soon it's going to be: how did people write code before AI agents?
 
 If like my team, you are using agentic coding responsibly in a serious production project, you might have noticed another change - the code repo has markedly improved.
 
@@ -22,7 +24,7 @@ Some observations from my team:
 - Detailed documentation is being created explaining all the context that's not captured in raw code, because the AI agent needs to read it.
 - Well-structured code, unit tests, and good variable names are being prioritized, because AI needs to understand it.
 - Error messages are being improved, because the LLM needs to interpret them.
-- Explicit coding conventions and style guides are being written, because AI should follow established patterns. There are no unwritten rules anymore. Or else, how is AI supposed to know them?
+- Explicit coding conventions and style guides are being written, because AI should follow established patterns. There are no unwritten rules anymore. Otherwise how is AI supposed to know them?
 - No more knowledge hoarding! Every team has that one engineer who possesses arcane knowledge about the project or the architecture, simply by virtue of being on the team for 5 years. But if you want the AI agent to help, you've got to document what you know.   
 
 In my experience, [the kind of mistakes AI agents make is not very different from what humans can make](https://sskelkar.github.io/post/ics-using-genai-should-think-like-managers/#ai-mistakes-are-human-like) under certain circumstances. 
@@ -36,4 +38,4 @@ This has had an interesting side effect: we're now doing for AI what we should h
 
 This is what separates responsible agentic coding from the vibe-coded mess that internet warns about. 
 These improvements don't just help AI work more safely, they make the entire development process, human or agentic, more systematic and maintainable. 
-Perhaps they will help us avoid being a vibecoding cautionary tale.
+We are confident they will prevent us from being a vibecoding cautionary tale.
