@@ -2,5 +2,5 @@
 type: "about"
 ---
 {{< about >}}
-I am a software engineer based in Berlin, Germany.
+I am an Engineering Manager at Delivery Hero, Berlin.
 {{</ about >}}

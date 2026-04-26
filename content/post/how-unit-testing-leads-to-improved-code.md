@@ -2,7 +2,7 @@
 title: "How unit testing leads to improved code"
 date: 2015-08-09T00:00:00+05:30
 tags:
-- Unit Testing
+- Coding is fun
 - Java
 ---
 In Test Driven Development, the purpose of unit testing is to help us design our classes and not just to validate the correctness of our code. In this article I want to demonstrate how unit testing forces us to write better code, with help of an example. I will use Mockito for mocking.

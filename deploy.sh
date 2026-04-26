@@ -22,16 +22,3 @@ git push origin HEAD:master
 
 # Come Back up to the Project Root
 cd ..
-
-# Add changes to git.
-git add public
-
-# Commit changes.
-msg="Update public submodule after deployment"
-if [ $# -eq 1 ]
-  then msg="$1"
-fi
-git commit -m "$msg"
-
-# Push source and build repos.
-git push origin HEAD
