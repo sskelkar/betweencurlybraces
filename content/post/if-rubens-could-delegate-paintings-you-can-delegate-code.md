@@ -1,5 +1,5 @@
 ---
-title: "If Rubens could delegate his paintings, you can your code"
+title: "If Rubens could delegate his paintings, you can delegate your code"
 date: 2026-04-23T23:40:02+02:00
 draft: false
 tags:
