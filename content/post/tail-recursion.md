@@ -4,7 +4,7 @@ date: 2015-08-26T00:00:00+05:30
 tags:
 - Functional Programming
 ---
-Tail recursion is one of those functional programming concepts that are likely to be unknown to someone coming from a Java background, like me. I encountered this term while skimming through the first few pages of [SICP](https://mitpress.mit.edu/sicp/full-text/book/book.html). After some quick R&D (i.e. googling), the following is a summary of what I have learnt.
+Tail recursion is one of those functional programming concepts that are likely to be unknown to someone coming from a Java background, like me. I encountered this term while skimming through the first few pages of [SICP](https://en.wikipedia.org/wiki/Structure_and_Interpretation_of_Computer_Programs). After some quick R&D (i.e. googling), the following is a summary of what I have learnt.
 
 Before understanding tail recursion, we need to be familiar with the term **tail call**. Simply put, if in a function definition, the last instruction before returning is a function call, then that function call is called a tail call.
 

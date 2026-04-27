@@ -32,13 +32,13 @@ Any background information on the feature is also added to the document.
 
 The PRP may contain a list of implementation steps. As Gemini runs through each step, it can update their status.
 
-## [Yes, You Should Check in the PRP](#yes-you-should-check-in-the-prp)
+## [Yes, you should check-in the prompt](#yes-you-should-check-in-the-prompt)
 
 There was some debate in the team about what to do with these PRPs once the implementation was done. One camp argued for discarding the plan because it's not code. In the first few weeks when we started agentic coding, our general understanding was that AI-generated code should be indistinguishable from human written code. The intention being that AI written code should match the quality of human code. Checking in the PRPs gave it away!
 
-There were also more practical concerns: PRPs accumulating over time and increasing clutter, and PRPs being a development-time artifact that would soon become outdated as new code is written.
+There were also more practical concerns: PRPs accumulating over time and increasing clutter, and being a development-time artifact they would soon become outdated as new code is written.
 
-While these concerns made sense, I saw value in keeping the PRPs around, at least for the time being. Since we were gradually transitioning to the Gemini way of working and still learning, I thought it was too soon to declare what constituted a good practice.
+While these concerns made sense, I saw value in keeping the prompts around, at least for the time being. Since we were gradually transitioning to the Gemini way of working and still learning, I thought it was too soon to declare what constituted a good practice.
 
 As we transition to PRP-based Gemini usage, having them in pull requests or the codebase is valuable for knowledge sharing as a way of showing what a good prompt looks like. Our approach will evolve, and we'll learn from each other with every PR. They're also useful as a reference for junior engineers. For this purpose, committing them to a dedicated folder is the most convenient approach, rather than copying and pasting them elsewhere.
 
@@ -46,9 +46,9 @@ If the PRPs turn out to not be useful, we can easily delete them later.
 
 Some tickets require changes large enough that they should be deployed in multiple steps, rather than one huge diff. The PRP also serves as a persistent prompt that's readily available when we want to continue working on a ticket. In each session, we can ask Gemini to check the current state of the PRP and continue where it left off.
 
-## [Capturing Intent and Thought Process](#capturing-intent-and-thought-process)
+## [Capturing intent and thought process](#capturing-intent-and-thought-process)
 
-But I've now started observing a very interesting benefit of having the PRP as part of a pull request. 
+But I've now started observing a very interesting benefit of having the prompt as part of a pull request. 
 Previously, a pull request contained only the code diff, which was the final result of what developers deemed ready to be published. 
 We rarely got insight into the developer's thought process when implementing a feature. 
 What constraints did they consider? Which edge cases did they think about? Did they write code or tests first?
