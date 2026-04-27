@@ -15,7 +15,7 @@ You are put off by all the manager-analogies and wish they'd stop. Perhaps you a
 So let's change the subject and talk about something interesting, like art. Hey how about that Rubens? 
 Do you know his process on some of his famous paintings like *The Elevation of the Cross*?
 
-Rubens would start by sketching the general view of the composition. This helped him plan the placement of the characters, orientation and the overall imagery.
+Peter Paul Rubens would start by sketching the general view of the composition. This helped him plan the placement of the characters, orientation and the overall imagery.
 
 Then he would submit this oil sketch to whoever commissioned the painting for comments and approval.
 
