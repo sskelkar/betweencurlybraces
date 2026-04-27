@@ -5,9 +5,12 @@
   const moonIcon = '🌙';
   const sunIcon = '☀️';
 
-  // Check for saved dark mode preference, default to light mode
+  // Check for saved dark mode preference, default to dark mode
   function getDarkModePreference() {
     const savedMode = localStorage.getItem(DARK_MODE_KEY);
+    if (savedMode === null) {
+      return true; // Default to dark mode
+    }
     return savedMode === 'enabled';
   }
 

@@ -150,16 +150,44 @@ div.panel-body a.list-group-item {
   border-radius: 0;
   border: none;
   font-size: 16px;
+  color: var(--text-primary);
+  background-color: transparent;
 }
+
+div.panel-body a.list-group-item:hover,
+div.panel-body a.list-group-item:focus {
+  color: var(--link-color);
+  background-color: transparent;
+}
+
 div.panel-group .panel {
     border-radius: 0;
+    border-color: var(--border-color);
+    background-color: transparent;
 }
+
 div.panel-group .panel+.panel {
     margin-top: 0;
 }
 
+div.panel-heading {
+  background-color: transparent;
+  border-color: var(--border-color);
+  color: var(--heading-color);
+}
+
+div.panel-body {
+  background-color: transparent;
+}
+
 div.panel-body a.list-group-item.view-all {
   font-weight: 600;
+}
+
+h4.panel-title > span.badge {
+  float: right;
+  background-color: var(--accent-color);
+  color: var(--bg-primary);
 }
 
 ::-moz-selection {
@@ -210,30 +238,38 @@ img {
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Always show navbar on mobile - no hamburger menu */
-.navbar-custom .navbar-collapse {
-  display: block !important;
-  height: auto !important;
+.navbar-custom .navbar-toggle {
+  border-color: var(--border-color);
+  margin-right: 15px;
 }
 
-.navbar-custom .navbar-header {
-  float: none;
+.navbar-custom .navbar-toggle .icon-bar {
+  background-color: var(--text-primary);
+}
+
+.navbar-custom .navbar-toggle:hover,
+.navbar-custom .navbar-toggle:focus {
+  background-color: var(--border-secondary);
 }
 
 @media only screen and (max-width: 767px) {
   .navbar-custom .navbar-nav {
     margin: 0;
-    float: right;
+    float: none;
   }
 
   .navbar-custom .navbar-nav > li {
-    float: left;
+    float: none;
   }
 
-  .navbar-custom .container-fluid {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .navbar-custom .navbar-nav > li > a,
+  .navbar-custom .navbar-nav > li > button {
+    padding: 10px 15px;
+  }
+
+  .navbar-custom .navbar-collapse {
+    border-top: 1px solid var(--border-color);
+    box-shadow: none;
   }
 }
 
@@ -289,6 +325,14 @@ img {
 
   .navbar-custom.top-nav-short {
     padding: 0;
+  }
+
+  .navbar-custom .navbar-collapse {
+    display: block !important;
+  }
+
+  .navbar-custom .navbar-toggle {
+    display: none;
   }
 }
 
@@ -821,10 +865,6 @@ footer .theme-by {
   margin-top:10px;
 }
 
-h4.panel-title > span.badge {
-    float: right;
-}
-
 @media only screen and (min-width: 768px) {
   .pager.blog-pager  {
     margin-top: 40px;
@@ -1024,14 +1064,29 @@ article.about {
 /* --- Dark Mode Toggle --- */
 .dark-mode-toggle {
   cursor: pointer;
-  font-size: 18px;
-  padding: 5px 10px;
+  font-size: 16px;
+  padding: 15px;
   background: transparent;
   border: none;
   color: var(--text-primary);
   transition: color 0.3s ease;
+  font-weight: 800;
+  vertical-align: middle;
+  line-height: 1;
+  position: relative;
+  top: 3px;
 }
 
 .dark-mode-toggle:hover {
   color: var(--accent-color);
+}
+
+@media only screen and (max-width: 767px) {
+  .dark-mode-toggle {
+    padding: 10px 15px;
+    font-size: 16px;
+    top: 0;
+    width: 100%;
+    text-align: left;
+  }
 }

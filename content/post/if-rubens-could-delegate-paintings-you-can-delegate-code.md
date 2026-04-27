@@ -31,4 +31,4 @@ Let's review this process again. The artist receives a commission. They create a
 
 Sounds familiar? So my question is, if an artist like Rubens could delegate away the grunt work, why not do the same with your code? You're still the engineer. You design, delegate, review and iterate. And you remain accountable. 
 
-But let the AI agents be your assistants in the workshop.
+But let the AI agents be your assistants in the workshop to carry out your vision.
