@@ -22,7 +22,7 @@ Then he would submit this oil sketch to whoever commissioned the painting for co
 The next step would be to execute the composition on a large canvas or panel. While Rubens took care of the key figures and details, he would delegate large parts of the paintings to his pupils, assistants and collaborators. They would either perform specialized jobs like painting figures, animals or still-life elements. Or they would cover large areas like background, drapery, secondary figures etc. The initial oil sketch would serve as the model for his assistants to paint their parts.
 
 Lastly, the painting would be reviewed by Rubens and he could provide final touches like his signature brushwork.
-![](/img/rubens-elevation-of-the-cross.png)
+![](/img/rubens-elevation-of-the-cross1.png)
 
 This process was fairly common with all major artists - Rembrandt, Raphael, Titian etc., who operated large workshops of assistants.
 It's no surprise they produced thousands of paintings during their lifetime. 
