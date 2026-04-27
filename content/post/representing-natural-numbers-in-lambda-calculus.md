@@ -7,7 +7,7 @@ tags:
 bigimg: [{src: "/img/math.jpg"}]
 ---
 
-One of the joys of reading [SICP](https://mitpress.mit.edu/sicp/full-text/book/book.html) is that apart from the main subject matter, we come across many tangential topics that are interesting in their own right. One such topic is mentioned in `Exercise 2.6`: Church numerals. Named after the mathematician Alonzo Church, Church numerals are a way of representing natural numbers in lambda calculus. But what is λ-calculus?
+One of the joys of reading [SICP](https://en.wikipedia.org/wiki/Structure_and_Interpretation_of_Computer_Programs) is that apart from the main subject matter, we come across many tangential topics that are interesting in their own right. One such topic is mentioned in `Exercise 2.6`: Church numerals. Named after the mathematician Alonzo Church, Church numerals are a way of representing natural numbers in lambda calculus. But what is λ-calculus?
 
 From a programming perspective, λ-calculus can be thought of as the smallest universal programming language. It lacks some of the common features that one would expect in a programming language like, primitives, booleans, numbers etc. In this language, variable substitution and functions are used as the building blocks to express everything else. Even numbers! In this post we will get a glimpse of how this is achieved.
 
