@@ -15,14 +15,14 @@ You are put off by all the manager-analogies and wish they'd stop. Perhaps you a
 So let's change the subject and talk about something interesting, like art. Hey how about that Rubens? 
 Do you know his process on some of his famous paintings like *The Elevation of the Cross*?
 
-Rubens would start by sketching the general view of the composition. This helped him plan the placement of the characters, orientation and the overall imagery.
+Peter Paul Rubens would start by sketching the general view of the composition. This helped him plan the placement of the characters, orientation and the overall imagery.
 
 Then he would submit this oil sketch to whoever commissioned the painting for comments and approval.
 
 The next step would be to execute the composition on a large canvas or panel. While Rubens took care of the key figures and details, he would delegate large parts of the paintings to his pupils, assistants and collaborators. They would either perform specialized jobs like painting figures, animals or still-life elements. Or they would cover large areas like background, drapery, secondary figures etc. The initial oil sketch would serve as the model for his assistants to paint their parts.
 
 Lastly, the painting would be reviewed by Rubens and he could provide final touches like his signature brushwork.
-![](/img/rubens-elevation-of-the-cross.png)
+![](/img/rubens-elevation-of-the-cross1.png)
 
 This process was fairly common with all major artists - Rembrandt, Raphael, Titian etc., who operated large workshops of assistants.
 It's no surprise they produced thousands of paintings during their lifetime. 
@@ -31,4 +31,4 @@ Let's review this process again. The artist receives a commission. They create a
 
 Sounds familiar? So my question is, if an artist like Rubens could delegate away the grunt work, why not do the same with your code? You're still the engineer. You design, delegate, review and iterate. And you remain accountable. 
 
-But let the AI agents be your assistants in the workshop.
+But let the AI agents be your assistants in the workshop to carry out your vision.
