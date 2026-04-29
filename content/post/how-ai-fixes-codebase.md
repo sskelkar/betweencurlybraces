@@ -5,6 +5,7 @@ draft: false
 author: "Sojjwal Kelkar"
 tags:
 - Agentic Coding
+share_img: "/img/ai-fixes-codebase.png"
 ---
 
 It is Q2 of 2026 and agentic coding is so thoroughly ingrained in our daily development process that life without it has started to become unimaginable. Don’t we all sometimes wonder: How did people travel to another country before translation or navigation apps? How did people survive without emails and smartphones? Pretty soon it’s going to be: how did people write code before AI agents?
