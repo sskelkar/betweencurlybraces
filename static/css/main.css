@@ -516,6 +516,10 @@ footer .theme-by {
   font-size: 22px;
   margin-top: 0;
 }
+
+.post-preview a:hover .post-title {
+  color: var(--link-color);
+}
 .post-preview .post-subtitle {
   margin: 0;
   font-weight: 300;
