@@ -55,7 +55,15 @@ What constraints did they consider? Which edge cases did they think about? Did t
 
 Now a developer goes through an intense round of discussion with Gemini during the planning process. 
 The PRP is a detailed documentation of that discussion. This means you not only get to see the final result (the code diff), 
-but you also get to see the developer's intent and thought process. Developers could of course document their thought process
+but you also get to see the developer's intent and thought process. For example, suppose you're reviewing a pull request, and you are familiar with
+the flow being modified. You are aware that changing X could have a side effect Y. But you don't see it being handled in the pull request.
+How do you know whether the developer thought about this particular edge case and decided that it doesn't apply in this situation OR they
+were unaware of it or simply forgot about it? You either leave a comment or talk to the developer directly. In either case the pull request
+cannot be approved and the developer remains blocked till this communication round-trip is complete. 
+But when the PRP is included in the pull request, you can at least know whether this edge case was discussed between the developer and the AI agent.
+
+
+Developers could of course document their thought process
 before AI, but how many would actually bother to do that? The AI agent automatically does this for you.
 
 It's still early days, but I see great value in capturing this in a code repo. Having worked on several legacy projects, 
