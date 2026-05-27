@@ -238,7 +238,7 @@ architecture, code structure and deciding the right abstractions. The sheer spee
 once a poor architectural decision goes uncorrected, its impact can stack up really fast. This is why as someone who's 
 responsible for maintaining a critical legacy system, I believe the need for close human collaboration has never been higher.
 
-# Are agent teams effective?
+# [Are agent teams effective?](#are-agent-teams-effective)
 At its core, a multi-agent team setup is a form of [agentic harness](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).
 I'm experimenting with different agent team configurations on refactoring a complex legacy system that has a lot of external [dependencies](https://www.explainxkcd.com/wiki/index.php/2347:_Dependency).
 So far it appears that for really hard problems, agents with more granular responsibilities may perform better.
