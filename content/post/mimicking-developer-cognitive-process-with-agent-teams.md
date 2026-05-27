@@ -10,17 +10,17 @@ share_img: ""
 Agentic coding came with the promise that developers can spend their time thinking at a higher abstraction, as the task of writing code is delegated away. 
 Instead, what we observe is that for any non-trivial task, developers have to spend their time micromanaging AI to ensure that: 
 it doesn't stray away from what the developer wants it to build; is being thorough enough; and doesn't overlook any critical requirement. 
-After the AI-assisted code has been written, it runs into the speed bump of code review.
+Then after the AI-assisted code has been written, it runs into the speed bump of code review.
 
 Any serious project requires strict quality requirements. Therefore, any velocity gained by speedy AI-generated code is offset 
-by the burden of verification and code reviews. 
+by the burden of closely monitoring the AI, verification and code reviews. 
 
 There are two major reasons why AI struggles to get it right:
 * ### AI operating on incomplete information
    Sure, we have added `claude.md` and extensively documented the project rules. But not everything that a human does while writing 
 code can be captured in these documents. Just like a new engineer joining a team learns about the product, codebase, deployment 
 constraints, common failure modes and team preferences etc. over time by building (and breaking) things; AI agents also somehow need to accumulate 
-learnings, recognize the patterns and recall specific information when needed, so that the need for explicit prompting should go down.
+learnings, recognize patterns and recall specific information when needed, such that the need for explicit prompting should go down.
 
    Because even if it was possible to provide upfront documentation for everything, loading it all up leads to context bloat, which brings us to the next problem.
 * ### Tendency of AI to forget its instructions
@@ -32,23 +32,24 @@ learnings, recognize the patterns and recall specific information when needed, s
    >
    > [...] Context, therefore, must be treated as a finite resource with diminishing marginal returns. Like humans, who have limited working memory capacity, LLMs have an “attention budget” that they draw on when parsing large volumes of context. Every new token introduced depletes this budget by some amount, increasing the need to carefully curate the tokens available to the LLM.
 
-Other more insidious issues have been [observed](https://www.reddit.com/r/ClaudeCode/comments/1rug14a/claude_wrote_playwright_tests_that_secretly/?utm_source=chatgpt.com) where agents can manipulate unit tests or requirements to fit the implementation.
+Other more [insidious issues](https://www.reddit.com/r/ClaudeCode/comments/1rug14a/claude_wrote_playwright_tests_that_secretly/?utm_source=chatgpt.com) have been observed where agents can manipulate unit tests or requirements to fit the implementation.
 
 Which means engineers must babysit AI agents to ensure they are doing the right thing. But we don't want to micromanage. 
 No, we want to YOLO when vibe coding, but... safely.
 
 # [How humans develop software](#how-humans-develop-software)
 
-Developers utilize their institutional knowledge to exercise taste and judgement. They know how their services interact with each other. 
+Good software developers don't just write code to fulfill some requirement. They add value through their knowledge and experience.
+They know how their services interact with each other. 
 How the data being produced in one service is used by another. How a few lines of code can impact the customer experience. 
-Because of this developers don’t just blindly implement a ticket assigned to them. They think about edge cases and anticipate failure scenarios. 
+Because of this developers don’t just naively implement a ticket assigned to them. They think about edge cases and anticipate failure scenarios. 
 They are discerning and push back on introducing changes that can break any implicit or explicit constraints, 
 duplicate a feature or something that does not belong to the domain responsibilities.
 
 But that's not all. Developers remember what code change had broken production last quarter. How to safely roll out a change 
 in a backward compatible manner. Or there's a technical debt that's supposed to be cleaned up, but it's not safe to do so right now 
 because of some dependency. Beyond functionality, they know the coding style and preferences of their team. 
-In short, humans exercise _judgement_.
+In short, humans utilize their institutional knowledge to exercise taste and judgement.
 
 Having said that, humans are not infallible. People complain that AI is non-deterministic. But so are we. 
 Humans experience fatigue, cognitive load, simple forgetfulness or not being able to make connections when information is provided
@@ -61,7 +62,7 @@ that can only report back to the main agent, the agent 'teammates' can talk to e
 Each agent has its own context window, instructions, configuration and model. They live in their separate tmux pane, 
 where the user can interact with them individually.
 
-These agents can take on predefined subagent types or personas. Each agent persona also maintains its separate memory where 
+These agents can take on predefined subagent types or personas. Each agent type also maintains its separate memory where 
 it can store its learnings. We can make the agents self-reflect after a session. So just like a human developer, 
 the agent can gradually accumulate knowledge that can be lazy loaded depending on the situation. 
 
@@ -203,7 +204,7 @@ While I have described broad agent personas here. In practice multiple specialis
 For example, instead of a single implementor agent having to know everything detail about how human developers prefer to write 
 code on a project, we can split the role into specialists who review the code and provide feedback: one has thoroughly understanding 
 of the project architecture; another is a clean coding practitioner; and yet another can be the reliability expert who has been 
-trained in last twenty incident reports and knows all the common failure modes. So the Single Responsibility Principle, applied to AI agents. 
+trained in last twenty incident reports and knows all the common failure modes. In other words, the **Single Responsibility Principle**, applied to AI agents. 
 
 Finally, not everything has to be an AI agent. Remember, context is a finite resource. So we need to offload any responsibilities that can be done by static code analyzers.
 
@@ -227,13 +228,22 @@ at some point, you need to stop talking and start coding. AI automates the typin
 the outcome deterministic. 
 
 A team of specialized agents with intricate knowledge of our project and our way of working _can_ improve confidence by 
-injecting early feedback from multiple points of view. They may even help deliver robust software by filling in the gaps that the developer missed. 
+injecting early feedback from multiple points of view. They may even help deliver robust software by filling in the gaps that the developer missed.
+
+If the code passes through multiple rounds of agentic reviews: adherence to requirements, congruence with the project, coding style, reliability, unit test quality etc.,
+when AI claims to have done something, we can trust that it probably has. This should reduce the burden of pull request reviews.    
 
 All of this means that the developers get to spend more time upstream to collaborate on 
 architecture, code structure and deciding the right abstractions. The sheer speed by which code can be produced means that 
 once a poor architectural decision goes uncorrected, its impact can stack up really fast. This is why as someone who's 
 responsible for maintaining a critical legacy system, I believe the need for close human collaboration has never been higher.
 
-Are agent teams the future of agentic coding? It might well become the norm to have a team of specialist agents, who specialize 
-on different aspects of *our* project, as a way of managing context. Or this might just be a bridge till we reach a point where 
-the next generation of LLMs are capable enough to overcome the problem of context rot, while being cost-effective.
+# Are agent teams effective?
+At its core, a multi-agent team setup is a form of [agentic harness](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).
+I'm experimenting with different agent team configurations on refactoring a complex legacy system that has a lot of external [dependencies](https://www.explainxkcd.com/wiki/index.php/2347:_Dependency).
+So far it appears that for really hard problems, agents with more granular responsibilities may perform better.
+The idea of agent teams is promising, but it requires more stress testing on real-world problems.
+
+Ultimately, we desperately need to have more reliable agentic setup that doesn't incur a high cost of human verification.
+Whether agent teams fully solve it remains to be seen. But the pattern of distributing developer judgment across specialized
+agents deserves serious exploration. It might be the way forward.
