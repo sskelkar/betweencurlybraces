@@ -2,6 +2,9 @@
 title: "Talk to each other, not just AI"
 date: 2026-08-29T14:11:31+02:00
 draft: false
+tags:
+  - Management
+  - Agentic Coding
 ---
 
 [Annie Vella](https://annievella.com/) published another insightful [post](https://www.linkedin.com/posts/annievella_ive-spent-some-time-going-through-the-responses-share-7498579139315023872-bILF) that resonated with me. As an Engineering Manager, her point #3 _"Colleagues stopped talking to each other. Rather than asking one another, they now rely on a model, further compounding the ambiguity and exposure gaps"_ worries me, and it has influenced some changes in how my team works:
