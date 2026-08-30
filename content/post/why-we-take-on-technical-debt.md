@@ -1,6 +1,6 @@
 ---
 title: "Why we take on Technical Debt?"
-date: 2026-08-31T22:15:16+02:00
+date: 2026-08-30T22:15:16+02:00
 draft: false
 tags:
   - Management
