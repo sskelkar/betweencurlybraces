@@ -1,0 +1,19 @@
+content/post/why-we-take-on-technical-debt.md
+  s_6ac3af6a1d981b::t_565f10426b0ca1 23
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "d15e753cb0d6a4643ea624c2b276b40726c2f14d",
+  "prompts": {},
+  "sessions": {
+    "s_6ac3af6a1d981b": {
+      "agent_id": {
+        "tool": "gemini",
+        "id": "3654b88a-cb61-4c1c-a0b7-076d3f4e510e",
+        "model": "gemini-3.5-flash"
+      },
+      "human_author": "sskelkar <sojjwal.kelkar@deliveryhero.com>"
+    }
+  }
+}
