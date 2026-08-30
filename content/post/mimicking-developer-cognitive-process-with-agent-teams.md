@@ -1,6 +1,6 @@
 ---
 title: "Mimicking developer cognitive process with agent teams"
-date: 2026-05-26T00:00:00+05:30
+date: 2026-04-03T00:00:00+05:30
 draft: false
 author: "Sojjwal Kelkar"
 tags:
