@@ -1,0 +1,19 @@
+content/post/talk-to-each-other-not-just-ai.md
+  s_6ac3af6a1d981b::t_88e9ba7ef8520c 5-7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "2b4b68105d3c85d6c24a0bd3df63615cdaff861b",
+  "prompts": {},
+  "sessions": {
+    "s_6ac3af6a1d981b": {
+      "agent_id": {
+        "tool": "gemini",
+        "id": "3654b88a-cb61-4c1c-a0b7-076d3f4e510e",
+        "model": "gemini-3.5-flash"
+      },
+      "human_author": "sskelkar <sojjwal.kelkar@deliveryhero.com>"
+    }
+  }
+}
