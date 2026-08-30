@@ -1,5 +1,5 @@
 ---
-title: "Talk to Each other, not just AI"
+title: "Talk to each other, not just AI"
 date: 2026-08-29T14:11:31+02:00
 draft: false
 ---
