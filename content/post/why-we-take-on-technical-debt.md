@@ -20,8 +20,8 @@ So, is tech debt always good?
 
 It depends. Because just like a financial debt, a tech debt can go spectacularly wrong.
 
-It felt nice in the moment to buy that car on a loan. But it may mean I can’t afford retirement.
+It felt nice in the moment to buy that car on a loan. But now it means I can’t afford early retirement. Tech debt is similarly risky.
 
-Taking on tech debt gives us an advantage in shipping features that help the business. But like a real debt, it weighs us down. It shows up on our balance sheet. And like Ward Cunningham’s original framing, we need to pay it back soon or we have to pay interest. What was supposed to be leverage that helps quickly move the business forward may create months of cleanup work and suck all of your team’s capacity.
+Taking on tech debt gives us an advantage in shipping features that help the business. But like a real debt, it weighs us down. It shows up on our balance sheet. And like Ward Cunningham’s original framing, we need to pay it back soon or we have to pay interest. What was supposed to be leverage that helps quickly move the business forward may slow down future progress, create a ton of cleanup work and suck all of your team’s capacity.
 
-This is why engineers are apprehensive about the idea of tech debt just like the folks in r/Boglehead are horrified by a 3x leverage ETF. You have to be careful when taking on technical debt, just like with monetary debt.
+This is why engineers are apprehensive about the idea of tech debt just like the folks in [r/Bogleheads](https://www.reddit.com/r/Bogleheads/) are horrified by a 3x leverage ETF. You have to be careful when taking on technical debt, just like with monetary debt.
